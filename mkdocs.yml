@@ -1,0 +1,13 @@
+site_name: ML models
+plugins:
+  - mkdocstrings:
+      paths: ["app/code", "tests"]
+theme:
+  name: material
+nav:
+  - Index: index.md
+  - GCN model: gcn.md
+  - MLP model: mlp.md
+  - CORA dataset: cora.md
+  - MNIST dataset: mnist.md
+  - Tests: tests.md
