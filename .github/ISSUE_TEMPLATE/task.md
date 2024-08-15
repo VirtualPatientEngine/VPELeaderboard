@@ -1,3 +1,12 @@
+---
+name: Task
+about: Task description for project management
+title: "[TASK]"
+labels: ''
+assignees: ''
+
+---
+
 # Description
 Describe the task from the perspective of the user. For example: "As a user, I would like to have this awesome feature that will make my life better."
 
