@@ -1,8 +1,8 @@
-[![TESTS](https://github.com/VirtualPatientEngine/demoMLsourceCode/actions/workflows/tests.yml/badge.svg)](https://github.com/VirtualPatientEngine/demoMLsourceCode/actions/workflows/tests.yml)
-[![RELEASE](https://github.com/VirtualPatientEngine/demoMLsourceCode/actions/workflows/release.yml/badge.svg)](https://github.com/VirtualPatientEngine/demoMLsourceCode/actions/workflows/release.yml)
+# **THIS REPOSITORY IS A WORK IN PROGRESS!**
+Please stay tuned for more information.
 
+----------------------------------------------------------------------------------------------------------
 <h1 align="center" style="border-bottom: none;">🚀 Template to write source code for ML and data models</h1>
-
 ## How to use this repo?
 1. Click on the `Use this template` button on the top-right of the page to create a copy of this repo.
 2. Update the `setup` method in `setup.py`, and change the `package_name` in `release.config.js`.
