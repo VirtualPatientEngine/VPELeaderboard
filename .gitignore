@@ -120,8 +120,10 @@ celerybeat.pid
 *.sage.py
 
 # Environments
+.myenv
 .env
 .venv
+myenv/
 env/
 venv/
 ENV/
@@ -136,7 +138,7 @@ venv.bak/
 .ropeproject
 
 # mkdocs documentation
-# /site
+/site
 
 # mypy
 .mypy_cache/

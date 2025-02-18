@@ -1,13 +1,90 @@
-site_name: ML models
-plugins:
-  - mkdocstrings:
-      paths: ["app/code", "tests"]
+site_name: VPELeaderboard
+repo_url: https://github.com/Rakesh-Seenu/VPELeaderboard/tree/main
+repo_name: VPE/Leaderboard
+nav:
+- Home: index.md
+- Getting Started: user-guide/index.md
+- Data: data/index.md
+- Algorithms: algorithms/index.md
+- Leaderboard: leaderboard/index.md
 theme:
   name: material
-nav:
-  - Index: index.md
-  - GCN model: gcn.md
-  - MLP model: mlp.md
-  - CORA dataset: cora.md
-  - MNIST dataset: mnist.md
-  - Tests: tests.md
+  logo: assets/images/VPE.png
+  features:
+  - content.code.annotate
+  - navigation.tabs
+  - navigation.indexes
+  - navigation.instant0
+  - navigation.path
+  - navigation.instant.prefetch
+  - navigation.top
+  - navigation.footer
+  - search.suggest
+  - search.highlight
+  - content.code.copy
+  font:
+    code: Roboto Mono
+  favicon: assets/images/VPE.png
+  language: en
+  palette:
+  - media: '(prefers-color-scheme: light)'
+    scheme: light
+    primary: custom
+    accent: lime
+    toggle:
+      icon: material/weather-night
+      name: Switch to dark mode
+  - media: '(prefers-color-scheme: dark)'
+    scheme: dark
+    primary: custom
+    accent: lime
+    toggle:
+      icon: material/weather-sunny
+      name: Switch to light mode
+extra_css:
+- assets/css/color-schemes.css
+- assets/css/fonts.css
+- assets/css/custom-material.css
+plugins:
+- search
+- macros
+- mike:
+    alias_type: copy
+    canonical_version: latest
+    version_selector: true
+    css_dir: assets/css
+    javascript_dir: assets/js
+- mkdocstrings:
+    handlers:
+      python:
+        paths:
+        - ./docs/
+- mkdocs-jupyter:
+    theme: auto
+    highlight_extra_classes: jupyter-notebook
+- include_dir_to_nav:
+    file_pattern: .*\.(md|ipynb)$
+- literate-nav:
+    nav_file: docs/SUMMARY.md
+- site-urls
+markdown_extensions:
+- attr_list
+- md_in_html
+- pymdownx.details
+- pymdownx.superfences
+- pymdownx.snippets:
+    check_paths: true
+    restrict_base_path: false
+    base_path: .
+- pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+- pymdownx.tabbed:
+    alternate_style: true
+- def_list
+- admonition
+- footnotes
+extra_javascript:
+- docs/assets/js/datatables.js
+extra:
+  pwa: false
