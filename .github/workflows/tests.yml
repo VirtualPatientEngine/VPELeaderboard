@@ -1,30 +1,27 @@
 # This is a basic workflow to help you get started with GitHub Actions
-name: TESTS
+name: Tests
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  # push:
-  #   branches: [ develop ]
+  # Triggers the workflow on push or pull request events
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main ]
+    paths:
+      - 'vpeleaderboard/**'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# This workflow contains 3 jobs called:
-# 1. pytest-and-pylint-windows-ubuntu-macos
-# 2. code-cov-ubuntu-macos
-# 3. code-cov-windows
+# This workflow contains jobs covering linting and code coverage (along with testing).
 jobs:
-  pytest-and-pylint-windows-ubuntu-macos:
+  pylint-windows-ubuntu-macos:
     # The type of runner that the job will run on
-    name: pytest-and-pylint-windows-ubuntu-macos
+    name: pylint-windows-ubuntu-macos
     runs-on: ${{ matrix.os }}
 
     strategy:
         matrix:
-            os: [windows-latest, ubuntu-latest, macos-latest]
+            os: [windows-latest, ubuntu-latest, macos-15]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -34,18 +31,18 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.x
-          
-      - name: Set up venvv, install dependencies and run pytest and pylint
-        shell: bash -l {0}
+          python-version: 3.12
+
+      # install requirements
+      - name: Install the requirements
         run: |
-          python3 -m venv path/to/venv
-          source path/to/venv/bin/activate
-          python3 -m pip install -r requirements.txt
-          pytest tests/
-          pylint --disable=R0801,W0613,W0221,R0913 tests
-          pylint --disable=R0801,W0613,W0221,R0913 app
-  
+          pip3 install --break-system-packages -r requirements.txt
+
+      # pylint
+      - name: Run pylint
+        run: |
+          pylint --disable=R0801,R0902,W0221,W0122 vpeleaderboard/
+
   # code coverage job for ubuntu and macos
   code-cov-ubuntu-macos:
     name: code-coverage-ubuntu-macos
@@ -53,7 +50,7 @@ jobs:
 
     strategy:
         matrix:
-          os: [ubuntu-latest, macos-latest]
+          os: [ubuntu-latest, macos-13]
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -61,14 +58,13 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: 3.x
+        python-version: 3.12
 
     - name: Install dependencies
       run: pip3 install -r requirements.txt  # Adjust this according to your project
 
     - name: Run tests with coverage
-      run: python3 -m coverage run --include=app/* -m pytest
-      continue-on-error: true
+      run: coverage run --include=vpeleaderboard/* -m pytest --cache-clear vpeleaderboard/tests/
 
     - name: Check coverage
       run: |
@@ -80,7 +76,7 @@ jobs:
         fi
       env:
         COVERAGE_FILE: './.coverage'
-  
+
   # code coverage job for windows
   code-cov-windows:
     name: code-coverage-windows
@@ -97,14 +93,13 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: 3.x
+        python-version: 3.12
 
     - name: Install dependencies
-      run: pip3 install --break-system-packages -r requirements.txt  # Adjust this according to your project
+      run: pip3 install -r requirements.txt  # Adjust this according to your project
 
     - name: Run tests with coverage
-      run: python3 -m coverage run --include=app/* -m pytest
-      continue-on-error: true
+      run: coverage run --include=vpeleaderboard/* -m pytest --cache-clear vpeleaderboard/tests/
 
     - name: Check coverage
       run: |
@@ -124,4 +119,3 @@ jobs:
         }
       env:
         COVERAGE_FILE: './.coverage'
-    
