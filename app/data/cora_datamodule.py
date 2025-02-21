@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
 '''
-This module contains the CORADataModule class, which is a subclass of LightningDataModule.
+This module contains the CORADataModule class,
+which is a subclass of LightningDataModule.
 It is a simple DataModule for the CORA dataset.
 '''
 
