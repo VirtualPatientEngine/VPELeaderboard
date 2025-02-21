@@ -20,7 +20,7 @@ jobs:
       - name: Install the requirements
         shell: bash -l {0}
         run: |
-          pip3 install mkdocs mkdocs-material mkdocs-material-extensions mkdocstrings mkdocstrings-python mkdocs-include-markdown-plugin mkdocs-jupyter mkdocs-macros-plugin mike
+          pip3 install -r requirements.txt
       - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
       - uses: actions/cache@v3
         with:
