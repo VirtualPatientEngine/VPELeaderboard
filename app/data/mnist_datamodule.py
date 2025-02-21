@@ -7,7 +7,6 @@ It is a simple DataModule for the MNIST dataset.
 """
 
 from typing import Any, Dict, Optional, Tuple
-
 import torch
 from lightning import LightningDataModule
 from torch.utils.data import ConcatDataset, DataLoader, Dataset, random_split
