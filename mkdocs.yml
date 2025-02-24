@@ -1,5 +1,9 @@
 site_name: VPELeaderboard
+<<<<<<< HEAD
 repo_url: https://github.com/Rakesh-Seenu/test_leader
+=======
+repo_url: https://github.com/VirtualPatientEngine/VPELeaderboard
+>>>>>>> c8368c1dbd7efd758dfe3196bb3c64b7deac9fd3
 repo_name: VPE/Leaderboard
 nav:
 - Home: index.md
