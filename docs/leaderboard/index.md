@@ -3,12 +3,6 @@ hide:
   - navigation
 ---
 
-<<<<<<< HEAD
-# Coming Soon...
-
-We are working on something exciting! Stay tuned for updates.
-
-=======
 Below is a **mock leaderboard table** illustrating how algorithm performance will be structured and compared:
 
 | Rank | **Algorithm Name** | Task/Data | Metric 1 | Metric 2 | Metric 3 | ... |
@@ -20,4 +14,3 @@ Below is a **mock leaderboard table** illustrating how algorithm performance wil
 Each **row** represents a different **algorithm** ranked by performance. Each **column** represents different **evaluation metrics**
 
 📢 Stay tuned for updates as we refine the leaderboard! 🎉 
->>>>>>> c8368c1dbd7efd758dfe3196bb3c64b7deac9fd3

@@ -3,11 +3,6 @@ hide:
   - navigation
 ---
 
-<<<<<<< HEAD
-# Coming Soon...
-
-We are working on something exciting! Stay tuned for updates.
-=======
 Below is a **mock table** illustrating how algorithm table will be structured:
 
 | Algorithm | Metric 1           | Metric 2           | Metric 3           | ... |
@@ -19,4 +14,3 @@ Below is a **mock table** illustrating how algorithm table will be structured:
 Each row represents a different **algorithm**, while columns represent different **metrics**. This helps to compare performance across multiple tasks.
 
 Stay tuned for updates! 🎉  
->>>>>>> c8368c1dbd7efd758dfe3196bb3c64b7deac9fd3
