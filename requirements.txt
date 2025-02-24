@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-mkdocs-macros-plugin == 1.3.7
-mkdocs-include-dir-to-nav == 1.2.0
-mkdocs-literate-nav == 0.6.1
-mkdocs-site-urls == 0.2.0
-mike == 2.1.3
-mkdocs-material  == 9.6.4
-mkdocs-jupyter == 0.25.1
-mkdocstrings[python] == 1.16.0
-pymdown-extensions == 10.14.3
-=======
 mkdocs-macros-plugin==1.3.7
 mkdocs-include-dir-to-nav==1.2.0
 mkdocs-literate-nav==0.6.1
@@ -19,5 +8,5 @@ mkdocs-jupyter==0.25.1
 mkdocstrings==0.28.1
 mkdocstrings-python==1.16.1
 pymdown-extensions==10.14.3
->>>>>>> c8368c1dbd7efd758dfe3196bb3c64b7deac9fd3
+
 
