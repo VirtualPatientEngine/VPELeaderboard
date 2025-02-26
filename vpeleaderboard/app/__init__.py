@@ -1,3 +1,4 @@
+# vpeleaderboard/app/__init__.py
 """
-This package provides calculator functions
+App module for VPE Leaderboard
 """

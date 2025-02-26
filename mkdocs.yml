@@ -1,14 +1,14 @@
 site_name: VPELeaderboard
 repo_url: https://github.com/VirtualPatientEngine/VPELeaderboard
-
 repo_name: VPE/Leaderboard
 nav:
 - Home: index.md
 - Getting Started: user-guide/index.md
-- Data: data/index.md
-- Algorithms: algorithms/index.md
+- Data: reports/biomodel_report.md
+- Algorithms: output1.md
 - Leaderboard: leaderboard/index.md
 theme:
+  custom_dir: vpeleaderboard/overrides/ 
   name: material
   logo: assets/images/VPE.png
   features:
@@ -55,11 +55,11 @@ plugins:
     version_selector: true
     css_dir: assets/css
     javascript_dir: assets/js
-- mkdocstrings:
-    handlers:
-      python:
-        paths:
-        - ./docs/
+# - mkdocstrings:
+#     handlers:
+#       python:
+#         paths:
+#         - ./docs/
 - mkdocs-jupyter:
     theme: auto
     highlight_extra_classes: jupyter-notebook
@@ -85,7 +85,7 @@ markdown_extensions:
 - def_list
 - admonition
 - footnotes
-extra_javascript:
-- docs/assets/js/datatables.js
+# extra_javascript:
+# - docs/assets/js/datatables.js
 extra:
   pwa: false
