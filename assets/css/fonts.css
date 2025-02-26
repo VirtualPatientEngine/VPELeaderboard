@@ -1,0 +1,41 @@
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  src: url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3si4zLd9U4zI0UOjZSKWg4.woff2) format("woff2");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: italic;
+  src: url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3si4zLd9U4zI0UOjZSKWg4.woff2) format("woff2");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  src: url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3si4zLd9U4zI0UOjZSKWg4.woff2) format("woff2");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: italic;
+  src: url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3si4zLd9U4zI0UOjZSKWg4.woff2) format("woff2");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  src: url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3si4zLd9U4zI0UOjZSKWg4.woff2) format("woff2");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: italic;
+  src: url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3si4zLd9U4zI0UOjZSKWg4.woff2) format("woff2");
+  font-weight: 700;
+}
