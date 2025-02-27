@@ -4,11 +4,16 @@ repo_name: VPE/Leaderboard
 nav:
 - Home: index.md
 - Getting Started: user-guide/index.md
-- Data: reports/biomodel_report.md
-- Algorithms: output1.md
+- Data: 
+  - Data: data/index.md
+  - Models: 
+    - System Bio Model: data/sys_bio_model.md
+    - Basico Model: data/basico_model.md
+- Algorithms: algorithms/output1.md
 - Leaderboard: leaderboard/index.md
+
 theme:
-  custom_dir: vpeleaderboard/overrides/ 
+  custom_dir: app/overrides/ 
   name: material
   logo: assets/images/VPE.png
   features:
@@ -55,11 +60,12 @@ plugins:
     version_selector: true
     css_dir: assets/css
     javascript_dir: assets/js
-# - mkdocstrings:
-#     handlers:
-#       python:
-#         paths:
-#         - ./docs/
+
+- mkdocstrings:
+    handlers:
+      python:
+        paths: [.]  # Adjust path to match your project structure
+
 - mkdocs-jupyter:
     theme: auto
     highlight_extra_classes: jupyter-notebook

@@ -2,8 +2,8 @@
 """
 VPE Leaderboard Package
 """
-from . import app
+
 from . import configs
-from . import overrides
-from . import tests
-from . import templates
+from . import src
+
+__all__ = ["configs", "src"]
