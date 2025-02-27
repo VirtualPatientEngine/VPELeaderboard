@@ -1,2 +1,2 @@
 
-::: vpeleaderboard.src.data.src.basico_model
+::: vpeleaderboard.data.src.basico_model

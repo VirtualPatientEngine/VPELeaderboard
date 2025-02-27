@@ -4,6 +4,8 @@ VPE Leaderboard Package
 """
 
 from . import configs
-from . import src
+from . import data
+from . import algorithms
+from . import leaderboard
 
-__all__ = ["configs", "src"]
+__all__ = ["configs","data", "algorithms","leaderboard"]

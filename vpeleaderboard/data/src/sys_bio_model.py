@@ -32,11 +32,11 @@ class SysBioModel(ABC, BaseModel):
         Raises:
             ValueError: If the SBML directory does not exist or contains no XML files
         """
-        xml_dir = "vpeleaderboard/src/data/models"
+        xml_dir = "vpeleaderboard/data/models"
         if not os.path.exists(xml_dir) or not os.listdir(xml_dir):
             raise ValueError(
                 "No SBML files found in the directory "
-                "vpeleaderboard/src/data/models"
+                "vpeleaderboard/data/models"
             )
         return self
 

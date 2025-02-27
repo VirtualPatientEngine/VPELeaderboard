@@ -1,8 +1,10 @@
+</body>
+</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Algorithm Metrics</title>
+  <title>Time-series Forecasting Articles</title>
 
   <!-- Intro.js -->
   <script src="https://cdn.jsdelivr.net/npm/intro.js@7.2.0/intro.min.js"></script>
@@ -34,39 +36,83 @@
     .container {
       padding: 20px;
     }
+
+    /* Ensure table is centered and does not stretch unnecessarily */
+    .dataTables_wrapper {
+      max-width: 85%;
+      margin: auto;
+      overflow-x: hidden;
+    }
+
+    /* Ensure export buttons are fully left-aligned and search bar fully right-aligned */
     .export-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 15px;
+      flex-wrap: nowrap;
+      margin-bottom: 10px;
+      max-width: 85%;
+      margin: auto;
     }
+
+    /* Fix Export Buttons Alignment */
     .dt-buttons {
       display: flex;
-      gap: 10px;
+      gap: 3px; /* Minimized gap between buttons */
+      flex-wrap: nowrap;
     }
+
+    /* Fix Search Bar Alignment */
+    .dataTables_filter {
+      margin-left: auto; /* Push search bar to the right */
+    }
+
     .dataTables_filter {
       text-align: right;
     }
-    
-    #tag {
-      cursor: pointer;
+    .dataTables_filter label {
+      font-weight: bold;
     }
 
-    #table-footer {
-      position: fixed;
-      bottom: 10px;
-      width: 100%;
-      background: #f8f9fa;
+    .dataTables_filter input {
+      padding: 6px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    /* Ensure proper table column spacing */
+    #table1 th, #table1 td {
+      padding: 10px 12px;
       text-align: center;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    /* Style table headers */
+    #table1 thead th {
+      background-color: #e0e0e0;
+      font-weight: bold;
+      border-bottom: 2px solid #bdbdbd;
+    }
+
+    /* Abstract toggle styling */
+    .abstract-toggle {
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .abstract-content {
+      display: none;
+      background: #f9f9f9;
       padding: 10px;
-      font-size: 16px;
-      font-style: italic;
-      box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+      border-radius: 5px;
+      max-width: 500px;
+      word-wrap: break-word;
     }
   </style>
 </head>
 <body class="container">
-  <p><i class="footer">This page was last updated on 2025-02-27 00:17:12 UTC</i></p>
+  <p><i class="footer">This page was last updated on 2025-02-27 18:05:58 UTC</i></p>
 
   <!-- Intro Button -->
   <div class="note info" onclick="startIntro()">
@@ -79,34 +125,46 @@
   
   <!-- Export Buttons and Search Bar at the Top -->
   <div class="export-container">
-    <div id="export_buttons" class="dt-buttons"></div>
-    <div class="dataTables_filter"></div>
+    <div class="dt-buttons"></div> <!-- Export buttons on the left -->
+    <div class="dataTables_filter"></div> <!-- Search bar on the right -->
   </div>
          
-  <!-- Algorithm Metrics Table -->
-  <div data-intro="This table displays algorithm performance metrics.">
+    <!-- Algorithm Metrics Table -->
+    <div data-intro="This table displays algorithm performance metrics.">
     <h3 id="algorithm_metrics">Algorithm Metrics Table</h3>
     <table id="table1" class="display wrap" style="width:100%">
-      <thead>
+        <thead>
         <tr>
-        <th>Abstract</th>
-        
-          <th>Model Name</th>
-        
-          <th>Number of Species</th>
-        
-          <th>Number of Parameters</th>
-        
+            <th>Abstract</th>
+            
+            <th>Model Name</th>
+            
+            <th>Number of Species</th>
+            
+            <th>Number of Parameters</th>
+            
         </tr>
-      </thead>
+        </thead>
 
-      <tbody>
+        <tbody>
         
         <tr>
-          <!-- Abstract Toggle Button -->
-          <td class="abstract-toggle">
+            <!-- Abstract Toggle Button -->
+            <td class="abstract-toggle">
             <i class="material-icons toggle-icon">visibility_off</i>
-            <div class="abstract-content" style="display:none;"><body xmlns="http://www.w3.org/1999/xhtml">
+            </td>
+            
+            <td>Teusink2000_Glycolysis</td>
+            
+            <td>26</td>
+            
+            <td>15</td>
+            
+        </tr>
+        <!-- Abstract Description Row -->
+        <tr class="abstract-row" style="display:none;">
+            <td colspan="5">
+            <div class="abstract-content"><body xmlns="http://www.w3.org/1999/xhtml">
     <p>
       <b>Can yeast glycolysis be understood in terms of in vitro kinetics of the constituent enzymes? Testing biochemistry.</b>
       <br/>
@@ -377,21 +435,26 @@
           <br/>
           <p>To cite BioModels Database, please use:      <a href="http://www.ncbi.nlm.nih.gov/pubmed/20587024" target="_blank">Li C, Donizelli M, Rodriguez N, Dharuri H, Endler L, Chelliah V, Li L, He E, Henry A, Stefan MI, Snoep JL, Hucka M, Le Novère N, Laibe C (2010) BioModels Database: An enhanced, curated and annotated resource for published quantitative kinetic models. BMC Syst Biol., 4:92.</a></p>
         </body></div>
-          </td>
-          
-            <td>Teusink2000_Glycolysis</td>
-          
-            <td>26</td>
-          
-            <td>15</td>
-          
+            </td>
         </tr>
         
         <tr>
-          <!-- Abstract Toggle Button -->
-          <td class="abstract-toggle">
+            <!-- Abstract Toggle Button -->
+            <td class="abstract-toggle">
             <i class="material-icons toggle-icon">visibility_off</i>
-            <div class="abstract-content" style="display:none;"><body xmlns="http://www.w3.org/1999/xhtml">
+            </td>
+            
+            <td>Dwivedi2014 - Crohns IL6 Disease model - Anti-IL6R Antibody</td>
+            
+            <td>44</td>
+            
+            <td>53</td>
+            
+        </tr>
+        <!-- Abstract Description Row -->
+        <tr class="abstract-row" style="display:none;">
+            <td colspan="5">
+            <div class="abstract-content"><body xmlns="http://www.w3.org/1999/xhtml">
     <div class="dc:title">Dwivedi2014 - Crohns IL6 Disease model -
 Anti-IL6R Antibody</div>
     <div class="dc:description">This model is comprised of four models:
@@ -476,80 +539,79 @@ biomarker C-Reactive Protein (CRP) expression.
   Public Domain Dedication</a> for more information.</p>
             </div>
           </body></div>
-          </td>
-          
-            <td>Dwivedi2014 - Crohns IL6 Disease model - Anti-IL6R Antibody</td>
-          
-            <td>44</td>
-          
-            <td>53</td>
-          
+            </td>
         </tr>
         
         <tr>
-          <!-- Abstract Toggle Button -->
-          <td class="abstract-toggle">
+            <!-- Abstract Toggle Button -->
+            <td class="abstract-toggle">
             <i class="material-icons toggle-icon">visibility_off</i>
-            <div class="abstract-content" style="display:none;"><body xmlns="http://www.w3.org/1999/xhtml">
+            </td>
+            
+            <td>Tang2020 - Estimation of transmission risk of COVID-19 and impact of public health interventions</td>
+            
+            <td>8</td>
+            
+            <td>16</td>
+            
+        </tr>
+        <!-- Abstract Description Row -->
+        <tr class="abstract-row" style="display:none;">
+            <td colspan="5">
+            <div class="abstract-content"><body xmlns="http://www.w3.org/1999/xhtml">
     <p>Since the emergence of the first cases in Wuhan, China, the novel coronavirus (2019-nCoV) infection has been quickly spreading out to other provinces and neighboring countries. Estimation of the basic reproduction number by means of mathematical modeling can be helpful for determining the potential and severity of an outbreak and providing critical information for identifying the type of disease interventions and intensity. A deterministic compartmental model was devised based on the clinical progression of the disease, epidemiological status of the individuals, and intervention measures. The estimations based on likelihood and model analysis show that the control reproduction number may be as high as 6.47 (95% CI 5.71–7.23). Sensitivity analyses show that interventions, such as intensive contact tracing followed by quarantine and isolation, can effectively reduce the control reproduction number and transmission risk, with the effect of travel restriction adopted by Wuhan on 2019-nCoV infection in Beijing being almost equivalent to increasing quarantine by a 100 thousand baseline value. It is essential to assess how the expensive, resource-intensive measures implemented by the Chinese authorities can contribute to the prevention and control of the 2019-nCoV infection, and how long they should be maintained. Under the most restrictive measures, the outbreak is expected to peak within two weeks (since 23 January 2020) with a significant low peak value. With travel restriction (no imported exposed individuals to Beijing), the number of infected individuals in seven days will decrease by 91.14% in Beijing, compared with the scenario of no travel restriction.</p>
   </body></div>
-          </td>
-          
-            <td>Tang2020 - Estimation of transmission risk of COVID-19 and impact of public health interventions</td>
-          
-            <td>8</td>
-          
-            <td>16</td>
-          
+            </td>
         </tr>
         
-      </tbody>
-
+        </tbody>
     </table>
-  </div>
-
-  <tfoot>
-      <tr>
-        <td colspan="4" style="text-align: center; font-style: italic;">
-          <br> <!-- Adds a blank line above the text -->
-          Each row represents a different <strong>algorithm</strong>, while columns represent different metrics. This helps to compare performance across multiple tasks.<br>
-          Stay tuned for updates! 🎉
-        </td>
-      </tr>
-  </tfoot>
+    </div>
 
   <script>
   $(document).ready(function() {
       var table = $('#table1').DataTable({
+            data: tableData, // Ensure this is defined and has the correct structure
+            columns: [
+            { data: "Abstract" },
+            { data: "Model Name" },
+            { data: "Number of Species" },
+            { data: "Number of Parameters" },
+            ],
           paging: true,
-          scrollX: true,
-          dom: '<"export-container"Blf>rtip',
+          autoWidth: false,
+          scrollX: false,
+          fixedHeader: true,
+          dom: '<"export-container"Bf>rtip', // Ensures search bar is on the right
           buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
           columnDefs: [
-              {"className": "dt-center", "targets": "_all"},
-              { width: '5%', targets: 0 }
-          ],
-          initComplete: function () {
-            console.log("DEBUG: DataTable initialized with", this.api().columns().count(), "columns");
-          }
+              { "className": "dt-center", "targets": "_all" },
+              { "width": "120px", "targets": 0 },
+              { "width": "160px", "targets": 1 },
+              { "width": "80px", "targets": [2, 3, 4] }
+          ]
       });
-    $(".dataTables_filter").addClass("text-right");
-  });
 
-  document.addEventListener("DOMContentLoaded", function () {
-  document.querySelectorAll(".abstract-toggle .toggle-icon").forEach(icon => {
-    icon.addEventListener("click", function () {
-      const abstract = this.nextElementSibling;
-      if (abstract.style.display === "none" || abstract.style.display === "") {
-        abstract.style.display = "block";
-        this.textContent = "visibility";  // Change icon
-      } else {
-        abstract.style.display = "none";
-        this.textContent = "visibility_off";  // Revert icon
-        }
-      });
+      $(".dataTables_filter").addClass("text-right");
     });
-  });
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".abstract-toggle .toggle-icon").forEach(icon => {
+        icon.addEventListener("click", function () {
+        const tr = this.closest('tr');
+        const abstractRow = tr.nextElementSibling;
+        if (abstractRow.style.display === "none" || abstractRow.style.display === "") {
+            abstractRow.style.display = "table-row";
+            this.textContent = "visibility";  // Change icon
+        } else {
+            abstractRow.style.display = "none";
+            this.textContent = "visibility_off";  // Revert icon
+        }
+        })
+    });
+    });
+
   </script>
 </body>
 </html>

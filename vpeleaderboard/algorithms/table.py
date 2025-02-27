@@ -17,7 +17,8 @@ def create_markdown(df, template_dir, template_file):
     markdown_content = template.render(
         current_time=pd.Timestamp.now().strftime('%Y-%m-%d %H:%M:%S'),
         table=df.to_dict(orient='records'),
-        headers=["Abstract"] + df.columns.tolist()
+        headers= df.columns.tolist()
+        # headers=["Abstract"] + df.columns.tolist()
         # headers=df.columns.tolist()
     )
     return markdown_content
@@ -29,10 +30,10 @@ def save_markdown(markdown_content, output_path):
 
 def main():
     """Main function."""
-    input_file = "docs/app/code/algorithms/mock_data/query.csv"
-    template_dir = "docs/templates"
-    template_file = "topic.txt"
-    output_file = "docs/output1.md"
+    input_file = "vpeleaderboard/algorithms/mock_data/query.csv"
+    template_dir = "app/templates"
+    template_file = "algo.txt"
+    output_file = "docs/algorithms/index.md"
     # Ensure output directory exists
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
     # Read the data

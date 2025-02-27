@@ -11,7 +11,7 @@ from typing import Optional, Dict, Union
 import pandas as pd
 import basico
 from pydantic import Field, model_validator
-from vpeleaderboard.src.data.src.sys_bio_model import SysBioModel
+from vpeleaderboard.data.src.sys_bio_model import SysBioModel
 
 # Initialize logger
 logging.basicConfig(level=logging.INFO)
