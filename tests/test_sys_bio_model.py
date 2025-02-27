@@ -34,7 +34,6 @@ def dynamic_model_factory():
 
     return _create_model
 
-# ✅ SUCCESSFUL SBML DIRECTORY VALIDATION (CUSTOM PATH)
 def test_validate_sbml_file_path_success(tmp_path):
     """
     Test SBML directory validation when XML files exist using a temporary folder.
@@ -48,7 +47,6 @@ def test_validate_sbml_file_path_success(tmp_path):
     model = BasicoModel(sbml_folder_path=str(sbml_path))
     assert model is not None
 
-# ✅ FAILURE WHEN SBML DIRECTORY IS EMPTY (CUSTOM PATH)
 def test_validate_sbml_file_path_failure(dynamic_model_creator):
     """
     Test SBML directory validation failure
@@ -71,7 +69,6 @@ def test_validate_sbml_file_path_failure1(temp_folder):
                            match=rf"No SBML files found in {str(temp_folder).replace('\\', '/')}"):
             BasicoModel(sbml_folder_path=str(temp_folder))
 
-# ✅ TEST FAILURE WHEN SBML DIRECTORY DOES NOT EXIST
 def test_non_existent_sbml_directory():
     """
     Test SBML directory validation failure when directory does not exist.
@@ -83,7 +80,6 @@ def test_non_existent_sbml_directory():
     with pytest.raises(ValueError, match=f"SBML folder not found: {non_existent_path}"):
         BasicoModel(sbml_folder_path=non_existent_path)
 
-# ✅ TEST METADATA EXTRACTION
 def test_get_model_metadata():
     """
     Test the get_model_metadata method of the BasicoModel class.
@@ -95,7 +91,6 @@ def test_get_model_metadata():
     assert metadata["Number of Parameters"] == len(basico.get_parameters())
     assert metadata["Description"] is not None
 
-# ✅ MOCK TEST CLASS FOR ABSTRACT `SysBioModel`
 class MockModel(SysBioModel):
     """
     Mock implementation of SysBioModel for testing.
@@ -104,7 +99,6 @@ class MockModel(SysBioModel):
         """Mock implementation returning empty DataFrame"""
         return pd.DataFrame()
 
-# ✅ TEST VALID SBML DIRECTORY
 @pytest.fixture(name="valid_sbml_folder_path")
 def valid_sbml_folder(tmp_path):
     """Creates a temporary directory with a dummy XML file."""

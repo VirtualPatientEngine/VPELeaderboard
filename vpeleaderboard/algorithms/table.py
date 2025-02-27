@@ -34,15 +34,11 @@ def main():
     template_dir = "app/templates"
     template_file = "algo.txt"
     output_file = "docs/algorithms/index.md"
-    # Ensure output directory exists
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
-    # Read the data
     df = read_tsv(input_file)
     print("DEBUG: Extracted Data ->", df)
-    # Generate Markdown content
     markdown_content = create_markdown(df, template_dir, template_file)
     print("DEBUG: Rendered HTML ->", markdown_content)
-    # Save the Markdown file
     save_markdown(markdown_content, output_file)
     print(f"Markdown file saved to {output_file}")
 

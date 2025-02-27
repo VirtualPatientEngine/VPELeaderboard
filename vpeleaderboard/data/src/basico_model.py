@@ -44,18 +44,15 @@ class BasicoModel(SysBioModel):
             ValueError: If the folder path is missing or does not contain XML files.
         """
         if not self.sbml_folder_path:
-            #logger.error("SBML folder path must be provided.")
             raise ValueError("SBML folder path must be provided.")
 
         if not os.path.exists(self.sbml_folder_path):
-            #logger.error("SBML folder not found: %s", self.sbml_folder_path)
             raise ValueError(f"SBML folder not found: {self.sbml_folder_path}")
 
         xml_files = [f for f in os.listdir(self.sbml_folder_path) if f.endswith(".xml")]
         if not xml_files:
-            #logger.error("No SBML files found in %s.", self.sbml_folder_path)
             raise ValueError(f"No SBML files found in {self.sbml_folder_path}.")
-        return self  # Ensure the validator returns the object itself
+        return self
 
     def get_model_metadata(self, sbml_file: str) -> Dict[str, Union[str, int]]:
         """
