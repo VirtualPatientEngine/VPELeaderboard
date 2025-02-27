@@ -112,7 +112,7 @@
   </style>
 </head>
 <body class="container">
-  <p><i class="footer">This page was last updated on 2025-02-27 19:50:06 UTC</i></p>
+  <p><i class="footer">This page was last updated on 2025-02-27 23:20:51 UTC</i></p>
 
   <!-- Intro Button -->
   <div class="note info" onclick="startIntro()">
@@ -129,7 +129,7 @@
     <div class="dataTables_filter"></div> <!-- Search bar on the right -->
   </div>
          
-    <!-- Algorithm Metrics Table -->
+    <!-- System Biology Models -->
     <div data-intro="This table displays algorithm performance metrics.">
     <h3 id="algorithm_metrics">Algorithm Metrics Table</h3>
     <table id="table1" class="display wrap" style="width:100%">

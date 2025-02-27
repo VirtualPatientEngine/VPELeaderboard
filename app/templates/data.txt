@@ -129,7 +129,7 @@
     <div class="dataTables_filter"></div> <!-- Search bar on the right -->
   </div>
          
-    <!-- Algorithm Metrics Table -->
+    <!-- System Biology Models -->
     <div data-intro="This table displays algorithm performance metrics.">
     <h3 id="algorithm_metrics">Algorithm Metrics Table</h3>
     <table id="table1" class="display wrap" style="width:100%">
