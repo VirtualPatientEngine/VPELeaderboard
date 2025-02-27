@@ -63,7 +63,7 @@ extracts metadata, and generates a markdown report.
 import os
 import logging
 import pandas as pd
-from vpeleaderboard.data.src.basico_model import ModelData
+from vpeleaderboard.data.src.basico_model import BasicoModel
 from vpeleaderboard.data.utils.markdown import create_markdown, save_markdown
 
 # Initialize logger
@@ -83,7 +83,7 @@ def generate_markdown_report(folder_path: str, output_path: str = "docs/data/ind
         None
     """
     # print("📌 SBML folder path being passed to ModelData: %s", input_folder_path)
-    biomodel = ModelData(sbml_folder_path=folder_path)
+    biomodel = BasicoModel(sbml_folder_path=folder_path)
     # Get metadata for all XML files
     metadata_list = [
         biomodel.get_model_metadata(file)

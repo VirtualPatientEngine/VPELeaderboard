@@ -1,4 +1,5 @@
 """
 Algorithms module containing algorithms mock table.
 """
-from . import table
+
+__all__ = ["table"]
