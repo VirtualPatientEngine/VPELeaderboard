@@ -1,4 +1,3 @@
-# vpeleaderboard/app/source/data/__init__.py
 """
 Data module containing code and utilities.
 """
@@ -7,4 +6,4 @@ from . import utils
 from . import models
 from . import empty_models
 
-__all__ = ["src", "utils", "models"]
+__all__ = ["src", "utils", "models","empty_models"]

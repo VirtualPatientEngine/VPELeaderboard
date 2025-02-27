@@ -1,4 +1,3 @@
-# vpeleaderboard/__init__.py
 """
 VPE Leaderboard Package
 """
