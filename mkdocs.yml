@@ -13,7 +13,8 @@ nav:
 - Leaderboard: leaderboard/index.md
 
 theme:
-  custom_dir: app/overrides/ 
+  # custom_dir: app/overrides/ 
+  custom_dir: app/templates
   name: material
   logo: assets/images/VPE.png
   features:

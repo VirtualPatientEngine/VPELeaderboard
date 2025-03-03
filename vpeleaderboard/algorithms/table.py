@@ -32,7 +32,7 @@ def main():
     """Main function."""
     input_file = "vpeleaderboard/algorithms/mock_data/query.csv"
     template_dir = "app/templates"
-    template_file = "algo.txt"
+    template_file = "algo.html"
     output_file = "docs/algorithms/index.md"
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
     df = read_tsv(input_file)

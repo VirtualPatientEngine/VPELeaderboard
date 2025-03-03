@@ -34,8 +34,7 @@ def generate_markdown_report(folder_path: str, output_path: str = "docs/data/ind
         ]
     metadata_df = pd.DataFrame(metadata_list)
     metadata_records = metadata_df.to_dict(orient='records')
-    markdown_content = create_markdown(metadata_records, "app/templates", "data.txt")
-    print("DEBUG: Rendered HTML ->", markdown_content)
+    markdown_content = create_markdown(metadata_records, "app/templates", "data.html")
     save_markdown(markdown_content, output_path)
     logger.info("Markdown report saved at: %s", output_path)
 
