@@ -1,0 +1,5 @@
+paths:
+  folder_path: "vpeleaderboard/data/models"
+  template_dir: "app/templates"
+  template_file: "data.html"
+  output_path: "docs/data/index.md"
