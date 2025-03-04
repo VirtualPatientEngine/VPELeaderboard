@@ -1,8 +1,8 @@
 """
 This is a test module for the package.
 """
-from . import test_sys_bio_model
-from . import test_basico_model
-from . import test_markdown
+from . import data
+from . import leaderboard
+from . import algorithms
 
-__all__ = ["test_sys_bio_model", "test_basico_model", "test_markdown"]
+__all__ = ["data", "leaderboard", "algorithms"]

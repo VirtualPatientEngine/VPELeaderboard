@@ -7,7 +7,7 @@ import unittest.mock
 import pytest
 import basico
 from vpeleaderboard.data.src.basico_model import BasicoModel
-from tests.utils.utils import (
+from tests.vpeleaderboard.data.utils.utils import (
     MockModel,
     model_fixture,
     dynamic_model_factory,
