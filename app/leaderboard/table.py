@@ -31,7 +31,7 @@ def save_markdown(markdown_content, output_path):
 def main():
     """Main function using Hydra for configuration management."""
     # Load hydra configuration
-    with hydra.initialize(version_base=None, config_path="../config/algorithms"):
+    with hydra.initialize(version_base=None, config_path="../config/leaderboard"):
         cfg = hydra.compose(config_name='config')
     
     input_file = cfg.paths.input_file
@@ -39,7 +39,7 @@ def main():
     template_file = cfg.paths.template_file
     output_file = cfg.paths.output_file
     
-    os.makedirs(os.path.dirname(output_file), exist_ok=True)   
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
     df = read_tsv(input_file)
     markdown_content = create_markdown(df, template_dir, template_file)
     save_markdown(markdown_content, output_file)
