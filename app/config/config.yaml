@@ -1,0 +1,5 @@
+defaults:
+    - _self_
+    - algorithms/default.yaml
+    - data/default.yaml
+    - vpeleaderboard/default.yaml

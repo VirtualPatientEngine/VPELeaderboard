@@ -32,7 +32,7 @@ def main():
     """Main function using Hydra for configuration management."""
     # Load hydra configuration
     with hydra.initialize(version_base=None, config_path="../config/leaderboard"):
-        cfg = hydra.compose(config_name='config')
+        cfg = hydra.compose(config_name='default')
     
     input_file = cfg.paths.input_file
     template_dir = cfg.paths.template_dir

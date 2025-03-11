@@ -5,6 +5,7 @@ This script loads SBML models from a specified folder,
 extracts metadata, and generates a markdown report.
 """
 
+import sys
 import os
 import logging
 import pandas as pd
@@ -14,6 +15,8 @@ from app.data.utils.markdown import create_markdown, save_markdown
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
 def generate_markdown_report(folder_path: str,
                              template_dir: str,
@@ -42,7 +45,7 @@ def generate_markdown_report(folder_path: str,
 
 if __name__ == "__main__":
     with hydra.initialize(version_base=None, config_path="../config/data"):
-        cfg = hydra.compose(config_name="config")
+        cfg = hydra.compose(config_name="default")
 
     logger.info("Generating markdown report")
     generate_markdown_report(
