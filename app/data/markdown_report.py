@@ -44,9 +44,10 @@ def generate_markdown_report(folder_path: str,
     logger.info("Markdown report saved at: %s", output_path)
 
 if __name__ == "__main__":
-    with hydra.initialize(version_base=None, config_path="../config/data"):
-        cfg = hydra.compose(config_name="default")
-
+    with hydra.initialize(version_base=None, config_path="../configs"):
+        cfg = hydra.compose(config_name="config",
+                            overrides=["data=default"])
+    cfg = cfg.data
     logger.info("Generating markdown report")
     generate_markdown_report(
         folder_path=cfg.paths.folder_path,

@@ -31,9 +31,11 @@ def save_markdown(markdown_content, output_path):
 def main():
     """Main function using Hydra for configuration management."""
     # Load hydra configuration
-    with hydra.initialize(version_base=None, config_path="../config/leaderboard"):
-        cfg = hydra.compose(config_name='default')
+    with hydra.initialize(version_base=None, config_path="../configs"):
+        cfg = hydra.compose(config_name="config", 
+                            overrides=["leaderboard=default"]) 
     
+    cfg = cfg.leaderboard
     input_file = cfg.paths.input_file
     template_dir = cfg.paths.template_dir
     template_file = cfg.paths.template_file

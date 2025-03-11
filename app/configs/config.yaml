@@ -1,0 +1,5 @@
+defaults:
+  - _self_
+  - algorithms: default  # should exist as configs/algorithms/default.yaml
+  - data: default        # should exist as configs/data/default.yaml
+  - leaderboard: default  # should exist as configs/vpeleaderboard/default.yaml
