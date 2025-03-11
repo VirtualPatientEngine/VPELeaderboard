@@ -51,7 +51,10 @@ def test_generate_markdown_report():
     """
     folder_path = "vpeleaderboard/data/models"
     output_path = "tests/test_index.md"
+    template_dir= "app/templates"
+    template_file= "data.html"
     assert os.path.exists(folder_path)
-    generate_markdown_report(folder_path, output_path)
+    assert os.path.exists(template_dir)
+    generate_markdown_report(folder_path,template_dir,template_file, output_path)
     assert os.path.exists(output_path)
     os.remove(output_path)
