@@ -11,7 +11,7 @@ from vpeleaderboard.data.src.sys_bio_model import SysBioModel
 @pytest.fixture
 def model_fixture():
     """Fixture for the BasicoModel class."""
-    return BasicoModel(sbml_folder_path="vpeleaderboard/data/models")
+    return BasicoModel(sbml_file_path="vpeleaderboard/data/models")
 
 @pytest.fixture(name="temp_folder")
 def temp_folder_fixture():
@@ -22,10 +22,10 @@ def temp_folder_fixture():
 def dynamic_model_factory():
     """Creates a BasicoModel instance with a function-defined SBML path."""
     def _create_model(sbml_path):
-        return BasicoModel(sbml_folder_path=sbml_path)
+        return BasicoModel(sbml_file_path=sbml_path)
     return _create_model
 
-@pytest.fixture(name="valid_sbml_folder_path")
+@pytest.fixture(name="valid_sbml_file_path")
 def valid_sbml_folder(tmp_path):
     """Creates a temporary directory with a dummy XML file."""
     folder = tmp_path / "models"

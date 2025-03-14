@@ -7,12 +7,12 @@ import pytest
 from vpeleaderboard.data.src.basico_model import BasicoModel
 from app.data.markdown_report import generate_markdown_report
 
-@pytest.fixture(name="model")
-def model_fixture():
-    """
-    A fixture for the BasicoModel class.
-    """
-    return BasicoModel(sbml_folder_path="vpeleaderboard/data/models")
+# @pytest.fixture(name="model")
+# def model_fixture():
+#     """
+#     A fixture for the BasicoModel class.
+#     """
+#     return BasicoModel(sbml_folder_path="vpeleaderboard/data/models")
 
 def test_validate_sbml_folder_path_success():
     """
@@ -20,7 +20,7 @@ def test_validate_sbml_folder_path_success():
     """
     assert os.path.exists("vpeleaderboard/data/models")
     assert len([f for f in os.listdir("vpeleaderboard/data/models") if f.endswith(".xml")]) > 0
-    model = BasicoModel(sbml_folder_path="vpeleaderboard/data/models")
+    model = BasicoModel(sbml_file_path="vpeleaderboard/data/models")
     assert model is not None
 
 def test_validate_sbml_folder_path_failure():
@@ -32,13 +32,13 @@ def test_validate_sbml_folder_path_failure():
     assert os.path.exists(empty_folder)
     assert len(os.listdir(empty_folder)) == 0
     with pytest.raises(ValueError, match="No SBML files found in vpeleaderboard/data/empty_folder"):
-        BasicoModel(sbml_folder_path=empty_folder)
+        BasicoModel(sbml_file_path=empty_folder)
 
 def test_get_model_metadata():
     """
     Test the get_model_metadata method of the BasicoModel class.
     """
-    model = BasicoModel(sbml_folder_path="vpeleaderboard/data/models")
+    model = BasicoModel(sbml_file_path="vpeleaderboard/data/models")
     metadata = model.get_model_metadata("BIOMD0000000064_url.xml")
     assert metadata["Model Name"] is not None
     assert metadata["Number of Species"] >= 0
@@ -54,6 +54,6 @@ def test_generate_markdown_report():
     template_dir = "app/templates"
     template_file = "data.html"
     assert os.path.exists(folder_path)
-    generate_markdown_report(folder_path,template_dir,template_file, output_path)
+    generate_markdown_report(folder_path, template_dir, template_file, output_path)
     assert os.path.exists(output_path)
     os.remove(output_path)

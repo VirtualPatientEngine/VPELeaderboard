@@ -21,7 +21,7 @@ class BasicoModel(SysBioModel):
     """
     Model that loads SBML models using the basico package.
     """
-    sbml_folder_path: Optional[str] = Field(None, description="Path to an SBML files folder")
+    sbml_file_path: Optional[str] = Field(None, description="Path to an SBML files folder")
     simulation_results: Optional[pd.DataFrame] = None
     name: Optional[str] = Field("", description="Name of the model")
     description: Optional[str] = Field("", description="Description of the model")
@@ -30,12 +30,12 @@ class BasicoModel(SysBioModel):
     model_config = {"arbitrary_types_allowed": True}
 
     @model_validator(mode="after")
-    def validate_sbml_folder_path(self):
+    def validate_sbml_file_path(self):
         """
         Validate that the SBML folder exists and contains XML files.
 
         Args:
-            sbml_folder_path (str): The path to the SBML folder.
+            sbml_file_path (str): The path to the SBML folder.
 
         Returns:
             ModelData: The validated instance of the class.
@@ -43,15 +43,15 @@ class BasicoModel(SysBioModel):
         Raises:
             ValueError: If the folder path is missing or does not contain XML files.
         """
-        if not self.sbml_folder_path:
+        if not self.sbml_file_path:
             raise ValueError("SBML folder path must be provided.")
 
-        if not os.path.exists(self.sbml_folder_path):
-            raise ValueError(f"SBML folder not found: {self.sbml_folder_path}")
+        if not os.path.exists(self.sbml_file_path):
+            raise ValueError(f"SBML folder not found: {self.sbml_file_path}")
 
-        xml_files = [f for f in os.listdir(self.sbml_folder_path) if f.endswith(".xml")]
+        xml_files = [f for f in os.listdir(self.sbml_file_path) if f.endswith(".xml")]
         if not xml_files:
-            raise ValueError(f"No SBML files found in {self.sbml_folder_path}.")
+            raise ValueError(f"No SBML files found in {self.sbml_file_path}.")
         return self
 
     def get_model_metadata(self, sbml_file: str) -> Dict[str, Union[str, int]]:
@@ -64,7 +64,7 @@ class BasicoModel(SysBioModel):
         Returns:
             Dict[str, Union[str, int]]: A dictionary containing metadata of the SBML model.
         """
-        file_path = os.path.join(self.sbml_folder_path, sbml_file)
+        file_path = os.path.join(self.sbml_file_path, sbml_file)
         copasi_model = basico.load_model(file_path)
 
         model_name = basico.model_info.get_model_name(model=copasi_model)

@@ -7,6 +7,7 @@ import unittest.mock
 import pytest
 import basico
 from vpeleaderboard.data.src.basico_model import BasicoModel
+from vpeleaderboard.data.src.sys_bio_model import SysBioModel
 from tests.vpeleaderboard.data.utils.utils import (
     MockModel,
     model_fixture,
@@ -14,6 +15,22 @@ from tests.vpeleaderboard.data.utils.utils import (
     temp_folder_fixture,
     valid_sbml_folder
 )
+
+import pytest
+from vpeleaderboard.data.src.sys_bio_model import SysBioModel
+
+class TestSysBioModel(SysBioModel):
+    """Concrete subclass to test abstract SysBioModel"""
+    def get_model_metadata(self):
+        """Dummy method implementation for testing"""
+        return None
+
+def test_missing_sbml_file_path():
+    """
+    Test that SysBioModel raises a ValueError when sbml_file_path is not provided.
+    """
+    with pytest.raises(ValueError, match="sbml_file_path must be provided."):
+        TestSysBioModel(name="Test Model")
 
 def test_with_fixtures():
     """Test to ensure all fixtures are accessible and not None."""
@@ -32,8 +49,15 @@ def test_validate_sbml_file_path_success(tmp_path):
     with open(sbml_path / "dummy_model.xml", "w", encoding="utf-8") as f:
         f.write("<sbml></sbml>")
 
-    model = BasicoModel(sbml_folder_path=str(sbml_path))
+    model = BasicoModel(sbml_file_path=str(sbml_path))
     assert model is not None
+
+def sbml_file_path():
+    '''
+    Test the check_biomodel_id_or_sbml_file_path method of the BioModel class.
+    '''
+    with pytest.raises(ValueError):
+        SysBioModel(name="Test Model", description="A test model")    
 
 def test_validate_sbml_file_path_failure(dynamic_model_creator):
     """
@@ -55,7 +79,7 @@ def test_validate_sbml_file_path_failure1(temp_folder):
     with unittest.mock.patch("os.listdir", return_value=[]):
         with pytest.raises(ValueError,
                            match=rf"No SBML files found in {str(temp_folder).replace('\\', '/')}"):
-            BasicoModel(sbml_folder_path=str(temp_folder))
+            BasicoModel(sbml_file_path=str(temp_folder))
 
 def test_non_existent_sbml_directory():
     """
@@ -66,22 +90,22 @@ def test_non_existent_sbml_directory():
         os.rmdir(non_existent_path)
 
     with pytest.raises(ValueError, match=f"SBML folder not found: {non_existent_path}"):
-        BasicoModel(sbml_folder_path=non_existent_path)
+        BasicoModel(sbml_file_path=non_existent_path)
 
 def test_get_model_metadata():
     """
     Test the get_model_metadata method of the BasicoModel class.
     """
-    model = BasicoModel(sbml_folder_path="vpeleaderboard/data/models")
+    model = BasicoModel(sbml_file_path="vpeleaderboard/data/models")
     metadata = model.get_model_metadata("BIOMD0000000064_url.xml")
     assert metadata["Model Name"] == 'Teusink2000_Glycolysis'
     assert metadata["Number of Species"] >= 0
     assert metadata["Number of Parameters"] == len(basico.get_parameters())
     assert metadata["Description"] is not None
 
-def test_valid_sbml_directory(valid_sbml_folder_path):
+def test_valid_sbml_directory(valid_sbml_file_path):
     """
     Test case where the SBML directory contains valid XML files.
     """
-    model = MockModel(sbml_file_path=str(valid_sbml_folder_path), name="ValidModel")
+    model = MockModel(sbml_file_path=str(valid_sbml_file_path), name="ValidModel")
     assert model is not None

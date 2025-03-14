@@ -3,7 +3,6 @@
 An abstract base class for Models in the Models.
 """
 
-import os
 from typing import Optional
 from abc import ABC, abstractmethod
 import pandas as pd
@@ -27,18 +26,13 @@ class SysBioModel(ABC, BaseModel):
         Ensure the SBML directory contains valid XML files.
 
         Args:
-            sbml_folder_path (str): The path to the SBML folder.
+            sbml_file_path (str): The path to the SBML folder.
 
         Raises:
             ValueError: If the SBML directory does not exist or contains no XML files
         """
-
-        xml_dir = "vpeleaderboard/data/models"
-        if not os.listdir(xml_dir):
-            raise ValueError(
-                "No SBML files found in "
-                "vpeleaderboard/data/models"
-            )
+        if not self.sbml_file_path:
+            raise ValueError("sbml_file_path must be provided.")
         return self
     @abstractmethod
     def get_model_metadata(self) -> pd.DataFrame:

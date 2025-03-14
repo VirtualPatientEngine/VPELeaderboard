@@ -3,7 +3,7 @@ A test markdown class for pytest unit testing.
 """
 
 import pytest
-from app.data.utils.markdown import create_markdown, save_markdown
+from app.utils import create_markdown, save_markdown
 
 # Sample data for testing
 SAMPLE_DATA = [
