@@ -1,7 +1,8 @@
 """
 A test markdown class for pytest unit testing.
 """
-
+import re
+from datetime import datetime
 import pytest
 from app.utils import create_markdown, save_markdown
 
@@ -40,6 +41,10 @@ def test_create_markdown(temp_template):
     assert "Model A" in markdown_content
     assert "Number of Species" in markdown_content
     assert "| Model Name | Number of Species | Number of Parameters |" in markdown_content
+
+    current_date = datetime.now().strftime("%Y-%m-%d")
+    assert re.search(r"Generated on: \d{4}-\d{2}-\d{2}", markdown_content)
+    assert current_date in markdown_content
 
 
 def test_save_markdown(tmp_path):
