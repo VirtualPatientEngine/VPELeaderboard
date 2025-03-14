@@ -23,6 +23,7 @@ jobs:
         shell: bash -l {0}
         run: |
           pip3 install -r requirements.txt
+          pip install -e .
       # Run the python scripts   
       - name: Run literature_fetch
         shell: bash -l {0}
