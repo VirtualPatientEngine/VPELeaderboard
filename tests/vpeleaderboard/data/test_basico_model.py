@@ -6,13 +6,6 @@ import os
 import pytest
 from vpeleaderboard.data.src.basico_model import BasicoModel
 
-# @pytest.fixture(name="model")
-# def model_fixture():
-#     """
-#     A fixture for the BasicoModel class.
-#     """
-#     return BasicoModel(sbml_folder_path="vpeleaderboard/data/models")
-
 def test_validate_sbml_folder_path_success():
     """
     Test SBML directory validation when XML files exist.

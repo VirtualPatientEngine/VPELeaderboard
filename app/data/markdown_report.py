@@ -31,7 +31,6 @@ def generate_markdown_report(input_file: str,
         template_file (str): Template file name.
         output_file (str): Path where the markdown report will be saved.
     """
-    # input_file = str(cfg.paths.input_file.get("folder", ""))  # Extracts folder value safely
     biomodel = BasicoModel(sbml_file_path=input_file)
     metadata_list = [
         biomodel.get_model_metadata(file)
