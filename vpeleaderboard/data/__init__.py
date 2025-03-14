@@ -2,4 +2,4 @@
 Data module containing code and utilities.
 """
 
-__all__ = ["src", "utils", "models"]
+__all__ = ["src", "models"]

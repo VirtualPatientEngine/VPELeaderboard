@@ -1,0 +1,5 @@
+paths:
+  input_file: "vpeleaderboard/leaderboard/mock_leaderboard/query.csv"
+  template_dir: "app/templates"
+  template_file: "algo.html"
+  output_file: "docs/leaderboard/index.md"
