@@ -64,7 +64,7 @@ jobs:
       run: pip3 install -r requirements.txt  # Adjust this according to your project
 
     - name: Run tests with coverage
-      run: coverage run --include=vpeleaderboard/* -m pytest --cache-clear tests/
+      run:  coverage run --include=vpeleaderboard/* --include=app/* -m pytest --cache-clear tests/
 
     - name: Check coverage
       run: |
@@ -99,7 +99,7 @@ jobs:
       run: pip3 install -r requirements.txt  # Adjust this according to your project
 
     - name: Run tests with coverage
-      run: coverage run --include=vpeleaderboard/* -m pytest --cache-clear tests/
+      run:  coverage run --include=vpeleaderboard/* --include=app/* -m pytest --cache-clear tests/
 
     - name: Check coverage
       run: |
