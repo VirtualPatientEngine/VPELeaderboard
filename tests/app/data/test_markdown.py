@@ -16,6 +16,19 @@ def test_validate_sbml_folder_path_success():
     model = BasicoModel(sbml_file_path="vpeleaderboard/data/models")
     assert model is not None
 
+def test_sbml_folder_not_found():
+    """
+    Test that a ValueError is raised when the sbml_folder_path does not exist.
+    """
+    non_existent_folder = "vpeleaderboard/data/non_existent_models"
+    # Ensure the folder does not exist
+    assert not os.path.exists(non_existent_folder), \
+        f"Test setup issue: {non_existent_folder} should not exist."
+
+    # Expect ValueError due to missing folder
+    with pytest.raises(ValueError, match=f"SBML file not found: {non_existent_folder}"):
+        BasicoModel(sbml_file_path=non_existent_folder)
+
 def test_validate_sbml_folder_path_failure():
     """
     Test SBML directory validation failure when no XML files are found.
@@ -24,15 +37,16 @@ def test_validate_sbml_folder_path_failure():
     os.makedirs(empty_folder, exist_ok=True)
     assert os.path.exists(empty_folder)
     assert len(os.listdir(empty_folder)) == 0
-    with pytest.raises(ValueError, match="No SBML files found in vpeleaderboard/data/empty_folder"):
+    with pytest.raises(ValueError,
+                       match=f"Invalid SBML file format: {empty_folder}. Expected an XML file."):
         BasicoModel(sbml_file_path=empty_folder)
 
 def test_get_model_metadata():
     """
     Test the get_model_metadata method of the BasicoModel class.
     """
-    model = BasicoModel(sbml_file_path="vpeleaderboard/data/models")
-    metadata = model.get_model_metadata("BIOMD0000000064_url.xml")
+    model = BasicoModel(sbml_file_path="vpeleaderboard/data/models/BIOMD0000000064_url 1.xml")
+    metadata = model.get_model_metadata()
     assert metadata["Model Name"] is not None
     assert metadata["Number of Species"] >= 0
     assert metadata["Number of Parameters"] >= 0
