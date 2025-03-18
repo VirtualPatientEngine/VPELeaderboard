@@ -5,7 +5,7 @@ This script demonstrates draft of creating tables in Markdown.
 
 import pandas as pd
 import hydra
-from app.utils.markdown_save import save_markdown, create_markdown
+from ..utils.markdown_save import save_markdown, create_markdown
 
 def main():
     """Main function using Hydra for configuration management."""

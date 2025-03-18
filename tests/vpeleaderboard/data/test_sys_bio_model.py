@@ -8,7 +8,7 @@ import pytest
 import basico
 from vpeleaderboard.data.src.basico_model import BasicoModel
 from vpeleaderboard.data.src.sys_bio_model import SysBioModel
-from tests.vpeleaderboard.data.utils.utils import (
+from ...utils.utils import (
     MockModel,
     model_fixture,
     temp_folder_fixture,

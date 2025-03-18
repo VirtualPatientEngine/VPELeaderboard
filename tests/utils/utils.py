@@ -18,13 +18,6 @@ def temp_folder_fixture():
     """Checks for an empty temporary directory."""
     return "vpeleaderboard/data/models"
 
-@pytest.fixture(name="dynamic_model_creator")
-def dynamic_model_factory():
-    """Creates a BasicoModel instance with a function-defined SBML path."""
-    def _create_model(sbml_path):
-        return BasicoModel(sbml_path)
-    return _create_model
-
 @pytest.fixture(name="valid_sbml_file_path")
 def valid_sbml_folder(tmp_path):
     """Creates a temporary directory with a dummy XML file."""
