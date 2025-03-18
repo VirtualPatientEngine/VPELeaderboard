@@ -29,8 +29,8 @@ jobs:
         shell: bash -l {0}
         run: |
           python -m app.algorithms.table  
-          python3 app/data/markdown_report.py
-          python3 app/leaderboard/table.py
+          python -m app.data.markdown_report
+          python -m app.leaderboard.table
       - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
       - uses: actions/cache@v3
         with:
