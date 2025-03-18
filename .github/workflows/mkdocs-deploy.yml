@@ -28,7 +28,7 @@ jobs:
       - name: Run literature_fetch
         shell: bash -l {0}
         run: |
-          python3 app/algorithms/table.py  
+          python -m app.algorithms.table  
           python3 app/data/markdown_report.py
           python3 app/leaderboard/table.py
       - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
