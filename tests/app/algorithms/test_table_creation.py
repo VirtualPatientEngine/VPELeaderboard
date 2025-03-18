@@ -5,7 +5,7 @@ This script demonstrates test of creating tables in Markdown.
 
 import unittest
 from unittest.mock import patch, MagicMock
-import pandas as pd
+import pandas as pd 
 from app.algorithms.table import main  # Ensure correct import
 
 class TestMarkdownScript(unittest.TestCase):
