@@ -20,12 +20,6 @@ class SysBioModel(BaseModel, ABC):
     name: Optional[str] = Field(..., description="Name of the model")
     description: Optional[str] = Field("", description="Description of the model")
 
-    # class Config:
-    #     """
-    #     Configuration for Pydantic.
-    #     """
-    #     arbitrary_types_allowed = True
-
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         if not self.sbml_file_path:
