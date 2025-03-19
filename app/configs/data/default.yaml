@@ -1,5 +1,5 @@
 paths:
-  input_file: "vpeleaderboard/data/models"   # Ensure it's a string, NOT a dictionary!
+  input_folder: "vpeleaderboard/data/models"
   template_dir: "app/templates"
   template_file: "data.html"
   output_file: "docs/data/index.md"

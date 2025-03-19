@@ -8,11 +8,6 @@ import pandas as pd
 from vpeleaderboard.data.src.basico_model import BasicoModel
 from vpeleaderboard.data.src.sys_bio_model import SysBioModel
 
-@pytest.fixture
-def model_fixture():
-    """Fixture for the BasicoModel class."""
-    return BasicoModel("vpeleaderboard/data/models")
-
 @pytest.fixture(name="temp_folder")
 def temp_folder_fixture():
     """Checks for an empty temporary directory."""

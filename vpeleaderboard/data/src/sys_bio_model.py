@@ -16,7 +16,7 @@ class SysBioModel(BaseModel, ABC):
     This class enforces a standard interface for models working
     with SBML (Systems Biology Markup Language) files.
     """
-    sbml_file_path: Optional[str] = Field(None, description="Path to an SBML file")
+    sbml_file_path: str = Field(..., description="Path to an SBML file")
     name: Optional[str] = Field(..., description="Name of the model")
     description: Optional[str] = Field("", description="Description of the model")
 

@@ -19,13 +19,13 @@ class BasicoModel(SysBioModel):
     Model that loads SBML models using the basico package.
     Ensures a single instance per component.
     """
-    sbml_file_path: Optional[str] = Field(None, description="Path to an SBML file ")
+    sbml_file_path: str = Field(..., description="Path to an SBML file ")
     simulation_results: Optional[Any] = Field(None, exclude=True)
     name: Optional[str] = ""
     description: Optional[str] = ""
     copasi_model: Optional[object] = Field(None, exclude=True)
 
-    def __init__(self, sbml_file_path: Optional[str] = None,
+    def __init__(self, sbml_file_path: str ,
                  name: Optional[str] = "", description: Optional[str] = ""):
         super().__init__(sbml_file_path=sbml_file_path,
                          name=name, description=description)
@@ -37,17 +37,20 @@ class BasicoModel(SysBioModel):
         Validate that the SBML folder exists and contains XML files.
         """
         if not self.sbml_file_path:
+            print("100")
             raise ValueError("SBML file must be provided.")
+            
 
         if not os.path.exists(self.sbml_file_path):
+            print("200")
             raise ValueError(f"SBML file not found: {self.sbml_file_path}")
-        if os.path.isdir(self.sbml_file_path):
-            sbml_files = [f for f in os.listdir(self.sbml_file_path)
-                          if f.endswith(".xml")]
-            if not sbml_files:
-                raise ValueError(
-                    f"Invalid SBML file format: {self.sbml_file_path}. Expected an XML file."
-                    )
+        # if os.path.isdir(self.sbml_file_path):
+        #     sbml_files = [f for f in os.listdir(self.sbml_file_path)
+        #                   if f.endswith(".xml")]
+        #     if not sbml_files:
+        #         raise ValueError(
+        #             f"Invalid SBML file format: {self.sbml_file_path}. Expected an XML file."
+        #             )
 
     def get_model_metadata(self) -> Dict[str, Union[str, int]]:
         """
