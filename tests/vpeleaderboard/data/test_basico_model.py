@@ -25,26 +25,3 @@ def test_get_model_metadata():
     assert metadata["Number of Species"] >= 0
     assert metadata["Number of Parameters"] >= 0
     assert metadata["Description"] is not None
-
-# def test_sbml_file_path_not_provided():
-#     """
-#     Test that a ValueError is raised when sbml_folder_path is not provided.
-#     """
-#     # with pytest.raises(ValueError,
-#     #                    match="sbml_file_path must be provided."):
-#     #     BasicoModel(sbml_file_path=None)
-#     model = BasicoModel()
-#     print("_____________________________________________________")
-#     print(model)
-#     assert model == "SBML file must be provided."
-
-# def test_sbml_file_not_found():
-#     """
-#     Test that a ValueError is raised when the sbml_folder_path does not exist.
-#     """
-#     non_existent_folder = "vpeleaderboard/data/non_existent_models"
-#     assert not os.path.exists(non_existent_folder), f"""
-#     No SBML files found in the directory {non_existent_folder}
-#     """
-#     # with pytest.raises(ValueError, match=f"SBML file not found: {non_existent_folder}"):
-#     #     BasicoModel(sbml_file_path=non_existent_folder)
