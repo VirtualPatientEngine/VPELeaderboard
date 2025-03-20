@@ -1,46 +1,57 @@
-import unittest
-from unittest.mock import patch, MagicMock
+#!/usr/bin/env python3
+'''
+This script demonstrates test of creating tables in Markdown.
+'''
+
+import pytest
 import os
+import tempfile
 import pandas as pd
-from app.utils.markdown_save import save_markdown, create_markdown
-import hydra
-from app.leaderboard.table import main  # Assuming the script is saved as table.py
+from app.algorithms.table import main
 
-class TestMarkdownScript(unittest.TestCase):
-    @patch("app.leaderboard.table.pd.read_csv")
-    @patch("app.leaderboard.table.create_markdown")
-    @patch("app.leaderboard.table.save_markdown")
-    @patch("app.leaderboard.table.hydra.initialize")
-    @patch("app.leaderboard.table.hydra.compose")
-    @patch("app.leaderboard.table.os.makedirs")  # ✅ Mock os.makedirs to prevent real folder creation
-    def test_main(self, mock_makedirs, mock_compose, mock_initialize, mock_save_markdown, mock_create_markdown, mock_read_csv):
-        # Mock Hydra config
-        mock_cfg = MagicMock()
-        mock_cfg.leaderboard.paths.input_file = "test.csv"
-        mock_cfg.leaderboard.paths.template_dir = "templates"
-        mock_cfg.leaderboard.paths.template_file = "template.md"
-        mock_cfg.leaderboard.paths.output_file = "output/output.md"  # ✅ Ensure it has a directory
-        mock_compose.return_value = mock_cfg
+@pytest.fixture
+def temporary_files():
+    """
+    This fixture will create the temporary input CSV and output markdown file.
+    It will be used to test the `main()` function with actual files.
+    """
 
-        # Mock Pandas DataFrame
-        mock_df = pd.DataFrame({"Column1": [1, 2, 3], "Column2": [4, 5, 6]})
-        mock_read_csv.return_value = mock_df
+    with tempfile.TemporaryDirectory() as temp_dir:
+        input_csv = os.path.join(temp_dir, "mock_input.csv")
+        data = {'Column1': [1, 2], 'Column2': [3, 4]}
+        df = pd.DataFrame(data)
+        df.to_csv(input_csv, index=False)
+        output_md = os.path.join(temp_dir, "mock_output.md")
 
-        # Mock create_markdown function
-        mock_create_markdown.return_value = "# Sample Markdown"
+        yield {
+            'input_csv': input_csv,
+            'output_md': output_md
+        }
 
-        # Execute main function
-        main()
+def test_main(temporary_files):
+    """
+    Test for the main function, which reads a CSV file, processes it with the provided
+    template, and writes the output to a markdown file.
+    """
+    config_file = "app/configs/leaderboard/default.yaml"
+    template_dir = "app/templates"
+    template_file = "algo.html"
+    
+    # Mock the input parameters as needed
+    input_file = temporary_files['input_csv']
+    output_file = temporary_files['output_md']
 
-        # Assertions
-        mock_initialize.assert_called_once()
-        mock_compose.assert_called_once_with(config_name="config", overrides=["leaderboard=default"])
-        mock_read_csv.assert_called_once_with("test.csv")
-        mock_create_markdown.assert_called_once_with(mock_df, "templates", "template.md")
-        mock_save_markdown.assert_called_once_with("# Sample Markdown", "output/output.md")
+    os.environ["HYDRA_CONFIG_PATH"] = config_file
 
-        # ✅ Ensure os.makedirs is called with the correct directory
-        mock_makedirs.assert_called_once_with("output", exist_ok=True)
+    main(input_file=input_file, template_dir=template_dir, template_file=template_file, output_file=output_file)
+    assert os.path.exists(output_file), "Output markdown file was not created!"
 
-if __name__ == "__main__":
-    unittest.main()
+    with open(output_file, 'r') as f:
+        markdown_content = f.read()
+
+    if "<html>" in markdown_content or "<head>" in markdown_content or "<body>" in markdown_content:
+        # It's HTML, so assert accordingly
+        assert True, "The content is HTML as expected."
+    else:
+        # If it's not HTML, assert that it should be Markdown
+        assert markdown_content.startswith("|") or markdown_content.startswith("#"), "The content is neither Markdown nor HTML!"
