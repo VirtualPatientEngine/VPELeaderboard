@@ -39,18 +39,9 @@ class BasicoModel(SysBioModel):
         if not self.sbml_file_path:
             print("100")
             raise ValueError("SBML file must be provided.")
-            
-
         if not os.path.exists(self.sbml_file_path):
             print("200")
             raise ValueError(f"SBML file not found: {self.sbml_file_path}")
-        # if os.path.isdir(self.sbml_file_path):
-        #     sbml_files = [f for f in os.listdir(self.sbml_file_path)
-        #                   if f.endswith(".xml")]
-        #     if not sbml_files:
-        #         raise ValueError(
-        #             f"Invalid SBML file format: {self.sbml_file_path}. Expected an XML file."
-        #             )
 
     def get_model_metadata(self) -> Dict[str, Union[str, int]]:
         """
