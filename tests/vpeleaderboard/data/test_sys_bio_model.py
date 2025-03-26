@@ -44,7 +44,7 @@ def test_get_model_metadata():
     """
     model = BasicoModel(sbml_file_path="vpeleaderboard/data/models")
     metadata = model.get_model_metadata()
-    assert metadata["Model Name"] == 'Teusink2000_Glycolysis'
+    assert metadata["Model Name"] == 'Dwivedi2014 - Crohns IL6 Disease model - Anti-IL6R Antibody'
     assert metadata["Number of Species"] >= 0
     assert metadata["Number of Parameters"] == len(basico.get_parameters())
     assert metadata["Description"] is not None

@@ -39,12 +39,10 @@ class BasicoModel(SysBioModel):
         if not self.sbml_file_path:
             print("100")
             raise ValueError("SBML file must be provided.")
-            
 
         if not os.path.exists(self.sbml_file_path):
             print("200")
             raise ValueError(f"SBML file not found: {self.sbml_file_path}")
-        
     def get_model_metadata(self) -> Dict[str, Union[str, int]]:
         """
         Retrieve metadata for a single SBML model.

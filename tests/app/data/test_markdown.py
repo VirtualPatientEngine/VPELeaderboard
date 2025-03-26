@@ -12,14 +12,14 @@ def test_validate_sbml_file_path_success():
     """
     assert os.path.exists("vpeleaderboard/data/models")
     assert len([f for f in os.listdir("vpeleaderboard/data/models") if f.endswith(".xml")]) > 0
-    model = BasicoModel(sbml_file_path="vpeleaderboard/data/models/BIOMD0000000064_url 1.xml")
+    model = BasicoModel(sbml_file_path="vpeleaderboard/data/models/BIOMD0000000064_url.xml")
     assert model is not None
 
 def test_get_model_metadata():
     """
     Test the get_model_metadata method of the BasicoModel class.
     """
-    model = BasicoModel(sbml_file_path="vpeleaderboard/data/models/BIOMD0000000064_url 1.xml")
+    model = BasicoModel(sbml_file_path="vpeleaderboard/data/models/BIOMD0000000064_url.xml")
     metadata = model.get_model_metadata()
     assert metadata["Model Name"] is not None
     assert metadata["Number of Species"] >= 0

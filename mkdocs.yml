@@ -6,11 +6,21 @@ nav:
 - Getting started: user-guide/index.md
 - Data: 
   - Data: data/index.md
+  - Tutorials: 
+    - SBML Dataloader: notebooks/sbml_dataloader.ipynb
   - Models: 
     - System Bio Model: data/sys_bio_model.md
     - Basico Model: data/basico_model.md
+    - Sbml Dataloader: data/sbml_dataloader.md
 - Algorithms: algorithms/index.md
 - Leaderboard: leaderboard/index.md
+- Documentation:
+    - Ops:
+        - Introduction: ops/Documentation_intro.md
+        - CodeOps: ops/CodeOps.md
+        - DevOps: ops/DevOps.md
+    - Contributing:
+        - Contributing: ops/CONTRIBUTING.md
 
 theme:
   # custom_dir: app/overrides/ 
