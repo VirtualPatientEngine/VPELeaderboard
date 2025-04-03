@@ -138,7 +138,6 @@ class SBMLDataModule(LightningDataModule):
         )
         dataset = self.SBMLTimeCourseDataset(train_df)
         return DataLoader(dataset)
-    
     def val_dataloader(self) -> DataLoader:
         """
         Creates the DataLoader for the validating dataset based on the SBML simulation results.
