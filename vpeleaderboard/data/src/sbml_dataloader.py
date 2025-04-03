@@ -138,19 +138,20 @@ class SBMLDataModule(LightningDataModule):
         )
         dataset = self.SBMLTimeCourseDataset(train_df)
         return DataLoader(dataset)
-    # def val_dataloader(self) -> DataLoader:
-    # """
-    # Creates the DataLoader for the validating dataset based on the SBML simulation results.
+    
+    def val_dataloader(self) -> DataLoader:
+        """
+        Creates the DataLoader for the validating dataset based on the SBML simulation results.
 
-    # Returns:
-    #     DataLoader: The DataLoader for the validating dataset.
-    # """
-    # val_df = basico.run_time_course(
-    #     duration=self.config['val_duration'],
-    #     use_initial_values=False
-    # )
-    # dataset = self.SBMLTimeCourseDataset(val_df)
-    # return DataLoader(dataset)
+        Returns:
+            DataLoader: The DataLoader for the validating dataset.
+        """
+        val_df = basico.run_time_course(
+            duration=self.config['val_duration'],
+            use_initial_values=False
+        )
+        dataset = self.SBMLTimeCourseDataset(val_df)
+        return DataLoader(dataset)
 
     def test_dataloader(self) -> DataLoader:
         """

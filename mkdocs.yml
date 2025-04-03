@@ -16,11 +16,9 @@ nav:
 - Leaderboard: leaderboard/index.md
 - Documentation:
     - Ops:
-        - Introduction: ops/Documentation_intro.md
-        - CodeOps: ops/CodeOps.md
-        - DevOps: ops/DevOps.md
-    - Contributing:
-        - Contributing: ops/CONTRIBUTING.md
+        - Introduction: https://virtualpatientengine.github.io/AIAgents4Pharma/ops/Documentation_intro/
+        - CodeOps: https://virtualpatientengine.github.io/AIAgents4Pharma/ops/CodeOps/
+        - DevOps: https://virtualpatientengine.github.io/AIAgents4Pharma/ops/DevOps/
 
 theme:
   # custom_dir: app/overrides/ 

@@ -37,11 +37,9 @@ class BasicoModel(SysBioModel):
         Validate that the SBML folder exists and contains XML files.
         """
         if not self.sbml_file_path:
-            print("100")
             raise ValueError("SBML file must be provided.")
 
         if not os.path.exists(self.sbml_file_path):
-            print("200")
             raise ValueError(f"SBML file not found: {self.sbml_file_path}")
         # if os.path.isdir(self.sbml_file_path):
         #     sbml_files = [f for f in os.listdir(self.sbml_file_path)
