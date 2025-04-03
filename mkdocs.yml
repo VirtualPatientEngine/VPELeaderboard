@@ -11,7 +11,7 @@ nav:
   - Models: 
     - System Bio Model: data/sys_bio_model.md
     - Basico Model: data/basico_model.md
-    - Sbml Dataloader: data/sbml_dataloader.md
+    - SBML Dataloader: data/sbml_dataloader.md
 - Algorithms: algorithms/index.md
 - Leaderboard: leaderboard/index.md
 - Documentation:
