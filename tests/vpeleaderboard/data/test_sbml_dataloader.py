@@ -18,7 +18,7 @@ def test_prepare_data(sbml_data_module):
     Test the prepare_data method.
     """
     # Simulate the loading of the configuration (no patching)
-    sbml_data_module.config = {"train_duration": 100, "test_duration": 50}
+    sbml_data_module.config = {"train_duration": 100,'val_duration': 30, "test_duration": 50}
     
     # Simulate the existence of the necessary files
     sbml_data_module.sbml_file_path = "vpeleaderboard/data/models/BIOMD0000000537_url.xml"
@@ -29,7 +29,7 @@ def test_prepare_data(sbml_data_module):
     sbml_data_module.prepare_data()
 
     # Assert that the config was correctly loaded
-    assert sbml_data_module.config == {"train_duration": 100, "test_duration": 50}
+    assert sbml_data_module.config == {"train_duration": 100,'val_duration': 30, "test_duration": 50}
     assert sbml_data_module._is_prepared is True
 
 
@@ -49,7 +49,7 @@ def test_setup(sbml_data_module):
     """
     Test the setup method.
     """
-    sbml_data_module.config = {"train_duration": 100, "test_duration": 50}
+    sbml_data_module.config = {"train_duration": 100,'val_duration': 30, "test_duration": 50}
     sbml_data_module.sbml_file_path = "vpeleaderboard/data/models/BIOMD0000000537_url.xml"
     
     # Simulate that the file exists
@@ -67,7 +67,7 @@ def test_train_dataloader(sbml_data_module):
     """
     Test the train_dataloader method.
     """
-    sbml_data_module.config = {"train_duration": 100, "test_duration": 50}
+    sbml_data_module.config = {"train_duration": 100,'val_duration': 30, "test_duration": 50}
     sbml_data_module.prepare_data()
 
     # Simulate the result of basico.run_time_course by manually creating a mock dataframe
@@ -80,12 +80,28 @@ def test_train_dataloader(sbml_data_module):
     assert len(train_loader) == 2  # Check that the data has two rows
     assert train_loader[0] == {"time": 0, "value": 1}  # Check the first data entry
 
+def test_val_dataloader(sbml_data_module):
+    """
+    Test the train_dataloader method.
+    """
+    sbml_data_module.config = {"train_duration": 100,'val_duration': 30, "test_duration": 50}
+    sbml_data_module.prepare_data()
+
+    # Simulate the result of basico.run_time_course by manually creating a mock dataframe
+    val_df = [{"time": 0, "value": 1}, {"time": 1, "value": 2}]
+    sbml_data_module.val_dataloader = lambda: val_df  # Mocking the method
+
+    # Call the train_dataloader and assert the mock data
+    val_loader = sbml_data_module.val_dataloader()
+    
+    assert len(val_loader) == 2  # Check that the data has two rows
+    assert val_loader[0] == {"time": 0, "value": 1}
 
 def test_test_dataloader(sbml_data_module):
     """
     Test the test_dataloader method.
     """
-    sbml_data_module.config = {"train_duration": 100, "test_duration": 50}
+    sbml_data_module.config = {"train_duration": 100,'val_duration': 30, "test_duration": 50}
     sbml_data_module.prepare_data()
 
     # Simulate the result of basico.run_time_course by manually creating a mock dataframe
