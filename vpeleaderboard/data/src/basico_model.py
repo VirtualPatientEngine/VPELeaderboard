@@ -1,11 +1,10 @@
 """
-BasicoModel class for loading SBML models
+BasicModel class for loading SBML models
 using the basico package.
 """
 
 import os
 import logging
-import COPASI
 from typing import Optional, Dict, Union,Any
 import basico
 from pydantic import Field
@@ -24,7 +23,7 @@ class BasicoModel(SysBioModel):
     simulation_results: Optional[Any] = Field(None, exclude=True)
     name: Optional[str] = ""
     description: Optional[str] = ""
-    copasi_model: Optional[COPASI.CDataModel] = Field(None, exclude=True)
+    copasi_model: Optional[Any] = Field(None, exclude=True)
 
     def __init__(self, sbml_file_path: str ,
                  name: Optional[str] = "", description: Optional[str] = ""):
