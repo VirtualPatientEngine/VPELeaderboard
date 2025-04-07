@@ -23,7 +23,7 @@ class BasicoModel(SysBioModel):
     simulation_results: Optional[Any] = Field(None, exclude=True)
     name: Optional[str] = ""
     description: Optional[str] = ""
-    copasi_model: Optional[Any] = Field(None, exclude=True)
+    copasi_model: Optional[object] = Field(None, exclude=True)
 
     def __init__(self, sbml_file_path: str ,
                  name: Optional[str] = "", description: Optional[str] = ""):
