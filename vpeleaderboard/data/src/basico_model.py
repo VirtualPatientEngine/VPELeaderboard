@@ -55,7 +55,8 @@ class BasicoModel(SysBioModel):
         Retrieve metadata for a single SBML model.
         """
         # file_path = os.path.join(self.sbml_file_path)
-        copasi_model = basico.load_model(self.sbml_file_path)
+        # copasi_model = basico.load_model(self.sbml_file_path)
+        copasi_model = basico.load_model(location=self.sbml_file_path)
 
         model_name = basico.model_info.get_model_name(model=copasi_model)
         species_count = len(basico.model_info.get_species(model=copasi_model))
