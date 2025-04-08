@@ -65,9 +65,7 @@ def safe_load_model(file_path):
     A safe loader that uses only the 1-arg importSBML() call,
     preventing TypeError on macOS.
     """
-    model = basico.load_biomodel()
-    model.importSBML(str(file_path))  # Single-arg call is safe across all platforms
-    return model
+    return basico.import_sbml(str(file_path))
 
 # ----------------------------------------------------------------------
 # On macOS only, override basico.load_model with our safe variant
