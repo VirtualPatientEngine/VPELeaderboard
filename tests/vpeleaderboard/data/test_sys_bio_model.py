@@ -3,8 +3,6 @@ A test class for pytest unit testing.
 """
 
 import os
-import unittest.mock
-import pytest
 import basico
 from vpeleaderboard.data.src.basico_model import BasicoModel
 from vpeleaderboard.data.src.sys_bio_model import SysBioModel
@@ -42,7 +40,7 @@ def test_get_model_metadata():
     """
     Test the get_model_metadata method of the BasicoModel class.
     """
-    model = BasicoModel(sbml_file_path="vpeleaderboard/data/models")
+    model = BasicoModel(sbml_file_path="vpeleaderboard/data/models/BIOMD0000000064_url.xml")
     metadata = model.get_model_metadata()
     assert metadata["Model Name"] == 'Dwivedi2014 - Crohns IL6 Disease model - Anti-IL6R Antibody'
     assert metadata["Number of Species"] >= 0
