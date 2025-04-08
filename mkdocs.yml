@@ -8,6 +8,7 @@ nav:
   - Data: data/index.md
   - Tutorials: 
     - SBML Dataloader: notebooks/sbml_dataloader.ipynb
+    - Adding SBML Model: data/loading_model.md
   - Models: 
     - System Bio Model: data/sys_bio_model.md
     - Basico Model: data/basico_model.md
