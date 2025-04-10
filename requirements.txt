@@ -11,7 +11,7 @@ pymdown-extensions==10.14.3
 pandas==2.2.3
 Jinja2==3.1.5
 mkdocs-material[extras]
-copasi_basico==0.78.0
+copasi_basico==0.83
 pydantic==2.9.2
 pylint==3.3.1
 pytest==8.3.3
