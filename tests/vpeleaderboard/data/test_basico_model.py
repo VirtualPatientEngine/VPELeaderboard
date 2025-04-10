@@ -3,7 +3,6 @@ A test BasicoModel class for pytest unit testing.
 """
 
 import os
-import pytest
 from vpeleaderboard.data.src.basico_model import BasicoModel
 
 def test_validate_sbml_folder_path_success():
