@@ -9,6 +9,7 @@ from typing import Optional, Dict, Union,Any
 import basico
 from pydantic import Field
 from ..src.sys_bio_model import SysBioModel
+import platform
 
 # Initialize logger
 logging.basicConfig(level=logging.INFO)
@@ -56,7 +57,14 @@ class BasicoModel(SysBioModel):
         """
         # file_path = os.path.join(self.sbml_file_path)
         # copasi_model = basico.load_model(self.sbml_file_path)
-        copasi_model = basico.load_model(location=self.sbml_file_path)
+        # copasi_model = basico.load_model(location=self.sbml_file_path)
+                # Platform-specific handling for macOS
+        if platform.system() == "Darwin":
+            # macOS specific fix: Explicitly pass required arguments to importSBML
+            copasi_model = basico.load_model(location=self.sbml_file_path, importSBML_args=(None, True, True, True))
+        else:
+            # Default behavior for other platforms
+            copasi_model = basico.load_model(location=self.sbml_file_path)
 
         model_name = basico.model_info.get_model_name(model=copasi_model)
         species_count = len(basico.model_info.get_species(model=copasi_model))
