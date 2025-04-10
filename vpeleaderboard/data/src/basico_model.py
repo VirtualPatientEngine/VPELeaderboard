@@ -56,8 +56,20 @@ class BasicoModel(SysBioModel):
         """
         # file_path = os.path.join(self.sbml_file_path)
         # copasi_model = basico.load_model(self.sbml_file_path)
-        copasi_model = basico.load_model(self.sbml_file_path)
+        # copasi_model = basico.load_model(self.sbml_file_path)
                 # Platform-specific handling for macOS
+        copasi_model = basico.create_datamodel()  # Assuming create_datamodel() initializes a new empty model
+
+        # Call importSBML directly with correct arguments
+        try:
+            success = copasi_model.importSBML(self.sbml_file_path, None, 1, True, False)
+            if not success:
+                logger.error(f"Failed to import SBML from {self.sbml_file_path}.")
+                return {}
+        except Exception as e:
+            logger.error(f"Error importing SBML model: {str(e)}")
+            return {}        
+
 
         model_name = basico.model_info.get_model_name(model=copasi_model)
         species_count = len(basico.model_info.get_species(model=copasi_model))

@@ -24,7 +24,9 @@ def test_get_model_metadata():
     """
     Test the get_model_metadata method of the BasicoModel class.
     """
-    model = BasicoModel(sbml_file_path="vpeleaderboard/data/models/BIOMD0000000064_url.xml")
+    path = "vpeleaderboard/data/models/BIOMD0000000064_url.xml"
+    sbml_file_path = os.path.abspath(path)
+    model = BasicoModel(sbml_file_path=sbml_file_path)
     metadata = model.get_model_metadata()
 
     assert metadata["Model Name"] is not None
