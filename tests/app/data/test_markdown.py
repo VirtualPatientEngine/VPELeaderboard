@@ -37,7 +37,7 @@ def test_get_model_metadata():
     """
     Test the get_model_metadata method of the BasicoModel class.
     """
-    model = BasicoModel(sbml_file_path="vpeleaderboard/data/models/BIOMD0000000064_url.xml")
+    model = BasicoModel(sbml_file_path="vpeleaderboard\data\models\BIOMD0000000064_url.xml")
     metadata = model.get_model_metadata()
     assert metadata["Model Name"] is not None
     assert metadata["Number of Species"] >= 0
