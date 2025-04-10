@@ -23,7 +23,7 @@ class BasicoModel(SysBioModel):
     simulation_results: Optional[Any] = Field(None, exclude=True)
     name: Optional[str] = ""
     description: Optional[str] = ""
-    copasi_model: Optional[object] = None
+    copasi_model: Optional[object] = Field(None, exclude=True)
 
     def __init__(self, sbml_file_path: str ,
                  name: Optional[str] = "", description: Optional[str] = ""):
@@ -57,25 +57,21 @@ class BasicoModel(SysBioModel):
         # file_path = os.path.join(self.sbml_file_path)
         # copasi_model = basico.load_model(self.sbml_file_path)
         # copasi_model = basico.load_model(location=self.sbml_file_path)
-        copasi_model = basico.create_datamodel()  # Create a new COPASI model instance
+        copasi_model = basico.load_model(self.sbml_file_path)  # Create a new COPASI model instance
 
-        try:
-            # Correctly pass arguments to importSBML for copasi_model
-            success = copasi_model.importSBML(
-                self.sbml_file_path,   # File path to the SBML model
-                None,                  # No process report
-                1,                     # Delete old data (set to True)
-                True,                  # Import MIRIAM annotations
-                False                  # Do not import initial values
-            )
+        # # Attempt to import the SBML model
+        # copasi_model.importSBML(
+        #     self.sbml_file_path,   # File path to the SBML model
+        #     None,                  # No process report
+        #     1,                     # Delete old data (set to True)
+        #     True,                  # Import MIRIAM annotations
+        #     False                  # Do not import initial values
+        # )
 
-            if not success:
-                logger.error(f"Failed to import SBML from {self.sbml_file_path}.")
-                return {}
-
-        except Exception as e:
-            logger.error(f"Error importing SBML model: {str(e)}")
-            return {}
+        # # Check if the model is loaded properly
+        # if copasi_model is None:
+        #     logger.error("Failed to load the model.")
+        #     return {}
 
         model_name = basico.model_info.get_model_name(model=copasi_model)
         species_count = len(basico.model_info.get_species(model=copasi_model))
