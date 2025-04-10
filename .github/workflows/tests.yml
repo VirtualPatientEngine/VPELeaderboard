@@ -50,7 +50,7 @@ jobs:
 
     strategy:
         matrix:
-          os: [ubuntu-latest, macos-12, macos-13, macos-14, macos-15] 
+          os: [ubuntu-latest, macos-12, macos-13] 
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -58,7 +58,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: 3.11
+        python-version: 3.12
 
     - name: Install dependencies
       run: pip3 install -r requirements.txt  # Adjust this according to your project
