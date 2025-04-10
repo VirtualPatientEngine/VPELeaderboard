@@ -58,20 +58,9 @@ class BasicoModel(SysBioModel):
         # copasi_model = basico.load_model(self.sbml_file_path)
         # copasi_model = basico.load_model(location=self.sbml_file_path)
         copasi_model = basico.load_model(self.sbml_file_path)  # Create a new COPASI model instance
-
-        # # Attempt to import the SBML model
-        # copasi_model.importSBML(
-        #     self.sbml_file_path,   # File path to the SBML model
-        #     None,                  # No process report
-        #     1,                     # Delete old data (set to True)
-        #     True,                  # Import MIRIAM annotations
-        #     False                  # Do not import initial values
-        # )
-
-        # # Check if the model is loaded properly
-        # if copasi_model is None:
-        #     logger.error("Failed to load the model.")
-        #     return {}
+        if not copasi_model.importSBML(self.sbml_file_path):
+            logger.error("Failed to load SBML model.")
+            return {}
 
         model_name = basico.model_info.get_model_name(model=copasi_model)
         species_count = len(basico.model_info.get_species(model=copasi_model))
