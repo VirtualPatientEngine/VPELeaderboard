@@ -6,8 +6,6 @@ using the basico package.
 import os
 import logging
 from typing import Optional, Dict, Union,Any
-import platform
-from unittest.mock import MagicMock
 import basico
 from pydantic import Field
 from ..src.sys_bio_model import SysBioModel
@@ -44,34 +42,13 @@ class BasicoModel(SysBioModel):
 
         if not os.path.exists(self.sbml_file_path):
             raise ValueError(f"SBML file not found: {self.sbml_file_path}")
-        # if os.path.isdir(self.sbml_file_path):
-        #     sbml_files = [f for f in os.listdir(self.sbml_file_path)
-        #                   if f.endswith(".xml")]
-        #     if not sbml_files:
-        #         raise ValueError(
-        #             f"Invalid SBML file format: {self.sbml_file_path}. Expected an XML file."
-        #             )
 
     def get_model_metadata(self) -> Dict[str, Union[str, int]]:
         """
         Retrieve metadata for a single SBML model.
         """
         # file_path = os.path.join(self.sbml_file_path)
-        # copasi_model = basico.load_model(self.sbml_file_path)
-        # copasi_model = basico.load_model(location=self.sbml_file_path)
-        if platform.system() == 'Darwin':  # macOS: Skip importSBML
-            # Mock the importSBML method to do nothing on macOS
-            copasi_model = basico.load_model(self.sbml_file_path)
-            # Temporarily replace the importSBML method to bypass it
-            copasi_model.importSBML = MagicMock(return_value=True)
-        else:
-            # On other OS, use the default behavior, which includes importSBML
-            copasi_model = basico.load_model(self.sbml_file_path)
-         #copasi_model = basico.load_model(self.sbml_file_path) # Create a new COPASI model instance
-        # if not copasi_model.importSBML(self.sbml_file_path):
-        #     logger.error("Failed to load SBML model.")
-        #     return {}
-
+        copasi_model = basico.load_model(self.sbml_file_path)
         model_name = basico.model_info.get_model_name(model=copasi_model)
         species_count = len(basico.model_info.get_species(model=copasi_model))
         parameter_count = len(basico.model_info.get_parameters(model=copasi_model))
