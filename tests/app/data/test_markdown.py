@@ -48,7 +48,7 @@ def test_generate_markdown_report():
     Test the generate_markdown_report function.
     """
     folder_path = "vpeleaderboard/data/models"
-    folder_path = os.path.abspath(folder_path)
+    # folder_path = os.path.abspath(folder_path)
     output_path = "tests/test_index.md"
 
     template_dir = "app/templates"

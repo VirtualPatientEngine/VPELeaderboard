@@ -29,7 +29,7 @@ class BasicoModel(SysBioModel):
                  name: Optional[str] = "", description: Optional[str] = ""):
         super().__init__(sbml_file_path=sbml_file_path,
                          name=name, description=description)
-        sbml_file_path = os.path.abspath(sbml_file_path)
+        # sbml_file_path = os.path.abspath(sbml_file_path)
         self.sbml_file_path = sbml_file_path
         self.validate_sbml_file_path()
 
