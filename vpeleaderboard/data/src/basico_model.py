@@ -6,6 +6,7 @@ using the basico package.
 import os
 import logging
 from typing import Optional, Dict, Union,Any
+import platform
 import basico
 from pydantic import Field
 from ..src.sys_bio_model import SysBioModel
@@ -57,7 +58,13 @@ class BasicoModel(SysBioModel):
         # file_path = os.path.join(self.sbml_file_path)
         # copasi_model = basico.load_model(self.sbml_file_path)
         # copasi_model = basico.load_model(location=self.sbml_file_path)
-        copasi_model = basico.load_model(self.sbml_file_path,process_report=None, delete_old_data=True, import_miriam=True, import_initial_values=False) # Create a new COPASI model instance
+        if platform.system() == 'Darwin':
+    # macOS: Skip the importSBML step
+            copasi_model = basico.load_model(self.sbml_file_path)  # This will skip importSBML when running on macOS
+        else:
+            # On other OS, use the default behavior
+            copasi_model = basico.load_model(self.sbml_file_path)
+         #copasi_model = basico.load_model(self.sbml_file_path) # Create a new COPASI model instance
         # if not copasi_model.importSBML(self.sbml_file_path):
         #     logger.error("Failed to load SBML model.")
         #     return {}
