@@ -3,13 +3,18 @@ on:
   push:
     branches:
       - main
-# Allows you to run this workflow manually from the Actions tab
+    paths:
+      - 'vpeleaderboard/data/models/**'
+      - 'vpeleaderboard/data/configs/**'
   workflow_dispatch:
+
 permissions:
   contents: write
+
 jobs:
-  deploy:
+  validate-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
       - name: Configure Git Credentials
@@ -19,24 +24,59 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: 3.12
-      - name: Install the requirements
+
+      - name: Install Dependencies
         shell: bash -l {0}
         run: |
-          pip3 install -r requirements.txt
+          pip install -r requirements.txt
           pip install -e .
-      # Run the python scripts   
-      - name: Run literature_fetch
-        shell: bash -l {0}
+
+      - name: Validate XML/YAML file presence and naming
+        id: validate
         run: |
+          echo "🔍 Validating XML and YAML files..."
+          models=$(ls models/*.xml 2>/dev/null | xargs -n 1 basename | sed 's/.xml$//')
+          configs=$(ls configs/*.yaml 2>/dev/null | xargs -n 1 basename | sed 's/.yaml$//')
+
+          missing=false
+          for model in $models; do
+            if ! echo "$configs" | grep -q "^$model$"; then
+              echo "❌ Missing YAML for model: $model"
+              missing=true
+            fi
+          done
+
+          for config in $configs; do
+            if ! echo "$models" | grep -q "^$config$"; then
+              echo "❌ Missing XML for config: $config"
+              missing=true
+            fi
+          done
+
+          if [ "$missing" = true ]; then
+            echo "⛔ Validation failed. Ensure matching XML and YAML files exist."
+            exit 1
+          fi
+
+      - name: Process and update data
+        run: |
+          echo "🚀 Processing models and updating data section..."
           python -m app.algorithms.table  
           python -m app.data.markdown_report
           python -m app.leaderboard.table
-      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
+
+      - name: Cache dependencies
+        run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
+
       - uses: actions/cache@v3
         with:
           key: mkdocs-material-${{ env.cache_id }}
           path: .cache
           restore-keys: |
             mkdocs-material-
-      - run: pip install mkdocs-material 
-      - run: mkdocs gh-deploy --clean --force 
+
+      - name: Install MkDocs Material
+        run: pip install mkdocs-material
+
+      - name: Deploy to GitHub Pages
+        run: mkdocs gh-deploy --clean --force
