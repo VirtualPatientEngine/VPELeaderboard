@@ -70,8 +70,8 @@ class SBMLDataModule(LightningDataModule):
             FileNotFoundError: If the SBML model or YAML config file is not found.
             ValueError: If the YAML config file is empty or missing required keys.
         """
-        # script_dir = os.path.dirname(__file__)
-        # script_dir = "\\".join(script_dir.split("\\")[:-1])
+        script_dir = os.path.dirname(__file__)
+        script_dir = "\\".join(script_dir.split("\\")[:-1])
         script_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
         with hydra.initialize(version_base=None,
                               config_path="../configs"):

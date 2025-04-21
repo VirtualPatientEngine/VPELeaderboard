@@ -1,5 +1,5 @@
 """
-BasicModel class for loading SBML models
+BasicoModel class for loading SBML models
 using the basico package.
 """
 
