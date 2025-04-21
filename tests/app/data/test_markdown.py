@@ -12,7 +12,11 @@ def test_validate_sbml_file_path_success():
     """
     assert os.path.exists("vpeleaderboard/data/models")
     assert len([f for f in os.listdir("vpeleaderboard/data/models") if f.endswith(".xml")]) > 0
-    model = BasicoModel(sbml_file_path="vpeleaderboard/data/models/BIOMD0000000064_url.xml")
+
+    path = "vpeleaderboard/data/models/BIOMD0000000064_url.xml"
+    sbml_file_path = os.path.abspath(path)
+
+    model = BasicoModel(sbml_file_path=sbml_file_path)
     assert model is not None
 
 def test_get_model_metadata():
@@ -31,10 +35,14 @@ def test_generate_markdown_report():
     Test the generate_markdown_report function.
     """
     folder_path = "vpeleaderboard/data/models"
+    # folder_path = os.path.abspath(folder_path)
     output_path = "tests/test_index.md"
+
     template_dir = "app/templates"
     template_file = "data.html"
+
     assert os.path.exists(folder_path)
     generate_markdown_report(folder_path, template_dir, template_file, output_path)
     assert os.path.exists(output_path)
+
     os.remove(output_path)
