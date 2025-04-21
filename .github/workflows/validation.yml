@@ -1,0 +1,69 @@
+name: Validation Workflow
+
+# Trigger on pull requests and manual workflow dispatch
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'vpeleaderboard/data/models/**'
+      - 'vpeleaderboard/data/configs/**'
+  workflow_dispatch:
+
+jobs:
+  validate-models-configs:
+    name: Validate Models and Configs
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-13, windows-latest]
+
+    steps:
+      # Checkout the repository to access files
+      - uses: actions/checkout@v3
+
+      # Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.12
+
+      # Install dependencies (required for validation)
+      - name: Install dependencies
+        run: |
+          pip3 install -r requirements.txt
+
+      # Validate XML and YAML file presence and naming
+      - name: Validate XML/YAML file presence and naming
+        id: validate
+        run: |
+          echo "🔍 Validating XML and YAML files..."
+          models=$(ls vpeleaderboard/data/models/*.xml 2>/dev/null | xargs -n 1 basename | sed 's/.xml$//')
+          configs=$(ls vpeleaderboard/data/configs/*.yaml 2>/dev/null | xargs -n 1 basename | sed 's/.yaml$//')
+
+          missing=false
+          for model in $models; do
+            if ! echo "$configs" | grep -q "^$model$"; then
+              echo "❌ Missing YAML for model: $model"
+              missing=true
+            fi
+          done
+
+          for config in $configs; do
+            if ! echo "$models" | grep -q "^$config$"; then
+              echo "❌ Missing XML for config: $config"
+              missing=true
+            fi
+          done
+
+          if [ "$missing" = true ]; then
+            echo "⛔ Validation failed. Ensure matching XML and YAML files exist."
+            exit 1
+          fi
+
+
+
+
+
+
+
