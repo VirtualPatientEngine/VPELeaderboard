@@ -29,6 +29,7 @@ class BasicoModel(SysBioModel):
                  name: Optional[str] = "", description: Optional[str] = ""):
         super().__init__(sbml_file_path=sbml_file_path,
                          name=name, description=description)
+        # sbml_file_path = os.path.abspath(sbml_file_path)
         self.sbml_file_path = sbml_file_path
         self.validate_sbml_file_path()
 
@@ -41,13 +42,6 @@ class BasicoModel(SysBioModel):
 
         if not os.path.exists(self.sbml_file_path):
             raise ValueError(f"SBML file not found: {self.sbml_file_path}")
-        # if os.path.isdir(self.sbml_file_path):
-        #     sbml_files = [f for f in os.listdir(self.sbml_file_path)
-        #                   if f.endswith(".xml")]
-        #     if not sbml_files:
-        #         raise ValueError(
-        #             f"Invalid SBML file format: {self.sbml_file_path}. Expected an XML file."
-        #             )
 
     def get_model_metadata(self) -> Dict[str, Union[str, int]]:
         """
@@ -55,7 +49,6 @@ class BasicoModel(SysBioModel):
         """
         # file_path = os.path.join(self.sbml_file_path)
         copasi_model = basico.load_model(self.sbml_file_path)
-
         model_name = basico.model_info.get_model_name(model=copasi_model)
         species_count = len(basico.model_info.get_species(model=copasi_model))
         parameter_count = len(basico.model_info.get_parameters(model=copasi_model))
