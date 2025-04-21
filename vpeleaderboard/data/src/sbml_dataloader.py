@@ -97,7 +97,7 @@ class SBMLDataModule(LightningDataModule):
         if not self.config:
             raise ValueError(f"YAML config {yaml_file} is empty or malformed.")
 
-        required_keys = ['train_duration', 'test_duration']
+        required_keys = ['train_duration', 'test_duration', 'val_duration']
         missing_keys = [key for key in required_keys
                         if key not in self.config or self.config[key] is None]
         if missing_keys:
