@@ -1,65 +1,3 @@
-# name: Validation Workflow
-
-# # Trigger on pull requests and manual workflow dispatch
-# on:
-#   pull_request:
-#     branches: [ main ]
-#     paths:
-#       - 'vpeleaderboard/data/models/**'
-#       - 'vpeleaderboard/data/configs/**'
-#   workflow_dispatch:
-
-# jobs:
-#   validate-models-configs:
-#     name: Validate Models and Configs
-#     runs-on: ${{ matrix.os }}
-
-#     strategy:
-#       matrix:
-#         os: [ubuntu-latest, macos-13, windows-latest]
-
-#     steps:
-#       # Checkout the repository to access files
-#       - uses: actions/checkout@v3
-
-#       # Set up Python environment
-#       - name: Set up Python
-#         uses: actions/setup-python@v4
-#         with:
-#           python-version: 3.12
-
-#       # Install dependencies (required for validation)
-#       - name: Install dependencies
-#         run: |
-#           pip3 install -r requirements.txt
-
-#       # Validate XML and YAML file presence and naming
-#       - name: Validate XML/YAML file presence and naming
-#         id: validate
-#         run: |
-#           echo "🔍 Validating XML and YAML files..."
-#           models=$(ls vpeleaderboard/data/models/*.xml 2>/dev/null | xargs -n 1 basename | sed 's/.xml$//')
-#           configs=$(ls vpeleaderboard/data/configs/*.yaml 2>/dev/null | xargs -n 1 basename | sed 's/.yaml$//')
-
-#           missing=false
-#           for model in $models; do
-#             if ! echo "$configs" | grep -q "^$model$"; then
-#               echo "❌ Missing YAML for model: $model"
-#               missing=true
-#             fi
-#           done
-
-#           for config in $configs; do
-#             if ! echo "$models" | grep -q "^$config$"; then
-#               echo "❌ Missing XML for config: $config"
-#               missing=true
-#             fi
-#           done
-
-#           if [ "$missing" = true ]; then
-#             echo "⛔ Validation failed. Ensure matching XML and YAML files exist."
-#             exit 1
-#           fi
 name: Validation Workflow
 
 # Trigger on pull requests and manual workflow dispatch
@@ -72,75 +10,91 @@ on:
   workflow_dispatch:
 
 jobs:
-  validate-models-configs:
-    name: Validate Models and Configs
+  validate-ubuntu-macos:
+    name: Validate Models and Configs on Ubuntu/macOS
     runs-on: ${{ matrix.os }}
-
+    
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-13, windows-latest]  # Runs on both Ubuntu/macOS and Windows
+        os: [ubuntu-latest, macos-13]
 
     steps:
-      # Checkout the repository to access files
       - uses: actions/checkout@v3
 
-      # Set up Python environment
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.12
 
-      # Install dependencies (required for validation)
       - name: Install dependencies
         run: |
           pip3 install -r requirements.txt
 
-      # Validate XML and YAML file presence and naming
       - name: Validate XML/YAML file presence and naming
         id: validate
         run: |
-          echo "🔍 Validating XML and YAML files..."
+          echo "🔍 Validating XML and YAML files on ${{ matrix.os }}..."
           models=$(ls vpeleaderboard/data/models/*.xml 2>/dev/null | xargs -n 1 basename | sed 's/.xml$//')
           configs=$(ls vpeleaderboard/data/configs/*.yaml 2>/dev/null | xargs -n 1 basename | sed 's/.yaml$//')
 
           missing=false
+          for model in $models; do
+            if ! echo "$configs" | grep -q "^$model$"; then
+              echo "❌ Missing YAML for model: $model"
+              missing=true
+            fi
+          done
 
-          # Check if we are on PowerShell (Windows) or Bash (Linux/macOS)
-          if [ $RUNNER_OS == "Windows" ]; then
-            # PowerShell loop for Windows
-            echo "Running on Windows"
-            foreach ($model in $models) {
-              if (-not ($configs -contains $model)) {
-                echo "❌ Missing YAML for model: $model"
-                $missing = $true
-              }
-            }
+          for config in $configs; do
+            if ! echo "$models" | grep -q "^$config$"; then
+              echo "❌ Missing XML for config: $config"
+              missing=true
+            fi
+          done
 
-            foreach ($config in $configs) {
-              if (-not ($models -contains $config)) {
-                echo "❌ Missing XML for config: $config"
-                $missing = $true
-              }
-            }
-          else
-            # Bash loop for Linux/macOS
-            echo "Running on Linux/macOS"
-            for model in $models; do
-              if ! echo "$configs" | grep -q "^$model$"; then
-                echo "❌ Missing YAML for model: $model"
-                missing=true
-              fi
-            done
-
-            for config in $configs; do
-              if ! echo "$models" | grep -q "^$config$"; then
-                echo "❌ Missing XML for config: $config"
-                missing=true
-              fi
-            done
+          if [ "$missing" = true ]; then
+            echo "⛔ Validation failed. Ensure matching XML and YAML files exist."
+            exit 1
           fi
 
-          # If missing is true, exit with failure
+  validate-windows:
+    name: Validate Models and Configs on Windows
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.12
+
+      - name: Install dependencies
+        run: |
+          pip3 install -r requirements.txt
+
+      - name: Validate XML/YAML file presence and naming
+        id: validate
+        run: |
+          echo "🔍 Validating XML and YAML files on Windows..."
+          models=$(ls vpeleaderboard\data\models\*.xml 2>/dev/null | xargs -n 1 basename | sed 's/.xml$//')
+          configs=$(ls vpeleaderboard\data\configs\*.yaml 2>/dev/null | xargs -n 1 basename | sed 's/.yaml$//')
+
+          missing=false
+          for model in $models; do
+            if ! echo "$configs" | findstr "^$model$" > nul; then
+              echo "❌ Missing YAML for model: $model"
+              missing=true
+            fi
+          done
+
+          for config in $configs; do
+            if ! echo "$models" | findstr "^$config$" > nul; then
+              echo "❌ Missing XML for config: $config"
+              missing=true
+            fi
+          done
+
           if [ "$missing" = true ]; then
             echo "⛔ Validation failed. Ensure matching XML and YAML files exist."
             exit 1
