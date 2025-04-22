@@ -26,9 +26,9 @@ jobs:
         with:
           python-version: 3.12
 
-      - name: Install dependencies
-        run: |
-          pip3 install -r requirements.txt
+      # - name: Install dependencies
+      #   run: |
+      #     pip3 install -r requirements.txt
 
       - name: Validate XML/YAML file presence and naming
         id: validate
@@ -56,7 +56,6 @@ jobs:
             echo "⛔ Validation failed. Ensure matching XML and YAML files exist."
             exit 1
           fi
-
   validate-windows:
     name: Validate Models and Configs on Windows
     runs-on: windows-latest
@@ -69,33 +68,34 @@ jobs:
         with:
           python-version: 3.12
 
-      - name: Install dependencies
-        run: |
-          pip3 install -r requirements.txt
+      # - name: Install dependencies
+      #   run: |
+      #     pip3 install -r requirements.txt
 
       - name: Validate XML/YAML file presence and naming
         id: validate
+        shell: pwsh
         run: |
           echo "🔍 Validating XML and YAML files on Windows..."
-          models=$(ls vpeleaderboard\data\models\*.xml 2>/dev/null | xargs -n 1 basename | sed 's/.xml$//')
-          configs=$(ls vpeleaderboard\data\configs\*.yaml 2>/dev/null | xargs -n 1 basename | sed 's/.yaml$//')
+          $models = Get-ChildItem "vpeleaderboard\data\models\*.xml" | ForEach-Object { $_.BaseName }
+          $configs = Get-ChildItem "vpeleaderboard\data\configs\*.yaml" | ForEach-Object { $_.BaseName }
 
-          missing=false
-          for model in $models; do
-            if ! echo "$configs" | findstr "^$model$" > nul; then
-              echo "❌ Missing YAML for model: $model"
-              missing=true
-            fi
-          done
+          $missing = $false
+          foreach ($model in $models) {
+            if ($configs -notcontains $model) {
+              Write-Host "❌ Missing YAML for model: $model"
+              $missing = $true
+            }
+          }
 
-          for config in $configs; do
-            if ! echo "$models" | findstr "^$config$" > nul; then
-              echo "❌ Missing XML for config: $config"
-              missing=true
-            fi
-          done
+          foreach ($config in $configs) {
+            if ($models -notcontains $config) {
+              Write-Host "❌ Missing XML for config: $config"
+              $missing = $true
+            }
+          }
 
-          if [ "$missing" = true ]; then
-            echo "⛔ Validation failed. Ensure matching XML and YAML files exist."
+          if ($missing) {
+            Write-Host "⛔ Validation failed. Ensure matching XML and YAML files exist."
             exit 1
-          fi
+          }
