@@ -6,9 +6,9 @@ nav:
 - Getting started: user-guide/index.md
 - Data: 
   - Data: data/index.md
+  - How To Add Your Models: data/loading_model.md
   - Tutorials: 
     - SBML Dataloader: notebooks/sbml_dataloader.ipynb
-    - Adding SBML Model: data/loading_model.md
   - Models: 
     - System Bio Model: data/sys_bio_model.md
     - Basico Model: data/basico_model.md

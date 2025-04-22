@@ -1,6 +1,6 @@
-# How to load SBML models
+# How to Load and Contribute SBML Models
 
-This guide explains how to upload and contribute a new model to the repository. Please ensure that all required files are correctly named and placed in the appropriate directories before submitting.
+This guide outlines the correct procedure for contributing SBML models to the Virtual Patient Leaderboard repository. By following these instructions, your models will be automatically validated, processed, and integrated into the leaderboard system via CI/CD.
 
 ---
 
@@ -8,15 +8,21 @@ This guide explains how to upload and contribute a new model to the repository. 
 
 To submit a model, **you must provide both of the following**:
 
-- **XML Model File**
+<!-- - **XML Model File**
 
-  Example: `BIOMD000000064.xml`  
+  Example: `your_model.xml`  
   ➤ Place this in the `models/` directory.
 
 - **YAML Configuration File**
 
-  Example: `BIOMD000000064_url.yaml`  
-  ➤ Place this in the `configs/` directory.
+  Example: `your_model.yaml`  
+  ➤ Place this in the `configs/` directory.  -->
+
+| File Type | Naming Example | Target Directory |
+|-----------|----------------|------------------|
+| SBML Model File | `your_model.xml` | `vpeleaderboard/data/models/` |
+| YAML Configuration File | `your_model.yaml` | `vpeleaderboard/data/configs/` |
+
 
 > ⚠️ Kindly ensure both files are present when submitting your model. Submissions with only one file will not be processed. Every XML model file must have a corresponding YAML configuration file with the same base name..
 
@@ -24,17 +30,20 @@ To submit a model, **you must provide both of the following**:
 
 ## Folder Structure Reference
 
-Your files should be organized as follows:
+Ensure your file placement adheres to this structure:
 
 ```
 vpeleaderboard/data/
 ├── models/
-│   └── BIOMD000000064_url.xml
+│   └── your_model.xml
+|   └── BIOMD0000000537_url.xml
 ├── configs/
-│   └── BIOMD000000064_url.yaml
+│   └── your_model.yaml
+|   └── BIOMD0000000537_url.yaml
 ```
 
- Please ensure that both the XML file and the corresponding YAML configuration file share the **same base name**
+ Please ensure that both the XML file and the corresponding YAML configuration file share the **same base name**.
+ Submissions that do not follow this structure will fail the automated GitHub Actions validation.
 
 ---
 
@@ -42,7 +51,7 @@ vpeleaderboard/data/
 
 ### 1. Fork the Repository
 
-Click the **“Fork”** button in the top-right corner of the repository on GitHub to create a copy under your GitHub account.
+Navigate to the [repository](https://github.com/VirtualPatientEngine/VPELeaderboard) and click the **“Fork”** button in the top-right corner of the repository on GitHub to create a copy under your GitHub account.
 
 ---
 
@@ -57,8 +66,9 @@ cd <repo-name>
 
 ### 3. Create a New Branch
 
+Use a descriptive branch name:
 ```bash
-git checkout -b add-new-model-BIOMD000000064
+git checkout -b add-new-your_model
 ```
 
 ---
@@ -69,16 +79,16 @@ git checkout -b add-new-model-BIOMD000000064
 
 - Put the YAML configuration file into the configs/ directory.
 
-Make sure both files follow the naming conventions described above and that a YAML file is provided for every XML model file.
+> ⚠️ Make sure both files follow the naming conventions described above and that a YAML file is provided for every XML model file.
 
 ---
 
 ### 5. Commit and Push Your Changes
 
 ```bash
-git add models/BIOMD000000064_url.xml configs/BIOMD000000064_url.yaml
-git commit -m "Add model BIOMD000000064"
-git push origin add-new-model-BIOMD000000064
+git add models/your_model.xml configs/your_model.yaml
+git commit -m "Add model your_model with configuration"
+git push origin add-new-model-your_model
 ```
 
 ---
