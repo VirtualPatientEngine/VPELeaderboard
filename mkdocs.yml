@@ -6,11 +6,19 @@ nav:
 - Getting started: user-guide/index.md
 - Data: 
   - Data: data/index.md
+  - Tutorials: 
+    - SBML Dataloader: notebooks/sbml_dataloader.ipynb
   - Models: 
     - System Bio Model: data/sys_bio_model.md
     - Basico Model: data/basico_model.md
+    - SBML Dataloader: data/sbml_dataloader.md
 - Algorithms: algorithms/index.md
 - Leaderboard: leaderboard/index.md
+- Documentation:
+    - Ops:
+        - Introduction: https://virtualpatientengine.github.io/AIAgents4Pharma/ops/Documentation_intro/
+        - CodeOps: https://virtualpatientengine.github.io/AIAgents4Pharma/ops/CodeOps/
+        - DevOps: https://virtualpatientengine.github.io/AIAgents4Pharma/ops/DevOps/
 
 theme:
   # custom_dir: app/overrides/ 
