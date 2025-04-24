@@ -12,6 +12,8 @@ from ...utils.utils import (
     valid_sbml_folder
 )
 
+MODEL_PATH = "vpeleaderboard/data/models/BIOMD0000000064_url.xml"
+
 class TestSysBioModel(SysBioModel):
     """Concrete subclass to test abstract SysBioModel"""
     def get_model_metadata(self):
@@ -40,7 +42,7 @@ def test_get_model_metadata():
     """
     Test the get_model_metadata method of the BasicoModel class.
     """
-    model = BasicoModel(sbml_file_path="vpeleaderboard/data/models/BIOMD0000000064_url.xml")
+    model = BasicoModel(sbml_file_path=MODEL_PATH)
     metadata = model.get_model_metadata()
     assert metadata["Model Name"] == 'Teusink2000_Glycolysis'
     assert metadata["Number of Species"] >= 0

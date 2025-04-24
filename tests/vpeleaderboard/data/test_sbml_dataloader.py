@@ -3,6 +3,7 @@ import pytest
 from vpeleaderboard.data.src.sbml_dataloader import SBMLDataModule
 import basico
 
+MODEL_PATH = "vpeleaderboard/data/models/BIOMD0000000537_url.xml"
 
 @pytest.fixture
 def sbml_data_module():
@@ -20,7 +21,7 @@ def test_prepare_data(sbml_data_module):
     sbml_data_module.config = {"train_duration": 100,'val_duration': 30, "test_duration": 50}
     
     # Simulate the existence of the necessary files
-    sbml_data_module.sbml_file_path = "vpeleaderboard/data/models/BIOMD0000000537_url.xml"
+    sbml_data_module.sbml_file_path = MODEL_PATH
 
     # Simulate checking the existence of files
     assert os.path.exists(sbml_data_module.sbml_file_path)  # This should pass if the file exists
@@ -49,8 +50,8 @@ def test_setup(sbml_data_module):
     Test the setup method.
     """
     sbml_data_module.config = {"train_duration": 100,'val_duration': 30, "test_duration": 50}
-    path = "vpeleaderboard/data/models/BIOMD0000000537_url.xml"
-    sbml_file_path = os.path.abspath(path)
+
+    sbml_file_path = os.path.abspath(MODEL_PATH)
     sbml_data_module.sbml_file_path = sbml_file_path
     
     # Simulate that the file exists

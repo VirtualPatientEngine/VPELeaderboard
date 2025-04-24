@@ -6,6 +6,8 @@ import os
 from vpeleaderboard.data.src.basico_model import BasicoModel
 from app.data.markdown_report import generate_markdown_report
 
+MODEL_PATH = "vpeleaderboard/data/models/BIOMD0000000064_url.xml"
+
 def test_validate_sbml_file_path_success():
     """
     Test SBML directory validation when XML files exist.
@@ -13,8 +15,7 @@ def test_validate_sbml_file_path_success():
     assert os.path.exists("vpeleaderboard/data/models")
     assert len([f for f in os.listdir("vpeleaderboard/data/models") if f.endswith(".xml")]) > 0
 
-    path = "vpeleaderboard/data/models/BIOMD0000000064_url.xml"
-    sbml_file_path = os.path.abspath(path)
+    sbml_file_path = os.path.abspath(MODEL_PATH)
 
     model = BasicoModel(sbml_file_path=sbml_file_path)
     assert model is not None
@@ -23,7 +24,7 @@ def test_get_model_metadata():
     """
     Test the get_model_metadata method of the BasicoModel class.
     """
-    model = BasicoModel(sbml_file_path="vpeleaderboard/data/models/BIOMD0000000064_url.xml")
+    model = BasicoModel(sbml_file_path=MODEL_PATH)
     metadata = model.get_model_metadata()
     assert metadata["Model Name"] is not None
     assert metadata["Number of Species"] >= 0
