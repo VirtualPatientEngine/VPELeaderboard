@@ -17,6 +17,8 @@ Our toolkit currently consists of the following components:
 
 ---
 
+![alt text](image.png)
+
 ## Table of Contents
 
 - [Get Started](#get-started)
@@ -53,11 +55,11 @@ Ensure that your Python environment is properly set up:
     vpe-env\\Scripts\\activate     # For Windows
     ```
 
-### How To Add Your Models
+## How To Add Your Models
 
 Follow the instructions in the How to Add Your Models section to contribute new models to the leaderboard.
 
-### Contributing
+## Contributing
 
 We welcome contributions to AIAgents4Pharma! Here’s how you can help:
 
