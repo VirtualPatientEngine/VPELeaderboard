@@ -139,4 +139,3 @@ def test_file_not_found(sbml_data_module):
         sbml_data_module.prepare_data()
     except FileNotFoundError as e:
         assert str(e) == "YAML file not found"
-        
