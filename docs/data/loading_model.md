@@ -75,6 +75,25 @@ git checkout -b add-new-your_model
 
 ### 4. Add Your Files
 
+#### YAML Configuration Parameters
+
+Each SBML model must be accompanied by a .yaml configuration file that defines the simulation durations. These parameters control how long the model runs for training, validation, and testing phases during automated processing.
+
+Your .yaml file must include the following keys:
+
+Key | Type | Description
+train_duration | int | Number of simulation time units allocated for training.
+val_duration | int | Duration allocated for validation phase.
+test_duration | int | Simulation time reserved for testing.
+
+Example Configuration
+```bash
+train_duration: 6
+val_duration: 3
+test_duration: 5
+```
+> ℹ️ These durations are used by internal simulation engines and are essential for leaderboard computation. Ensure that the values are consistent with the model’s expected simulation scale.
+
 - Put the XML model file into the models/ directory.
 
 - Put the YAML configuration file into the configs/ directory.
