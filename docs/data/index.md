@@ -1,5 +1,3 @@
-</body>
-</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,11 +35,11 @@
       padding: 20px;
     }
 
-    /* Ensure table is centered and does not stretch unnecessarily */
+    /* Ensure table does not exceed window width */
     .dataTables_wrapper {
-      max-width: 85%;
+      max-width: 100%;
       margin: auto;
-      overflow-x: hidden;
+      overflow-x: auto;
     }
 
     /* Ensure export buttons are fully left-aligned and search bar fully right-aligned */
@@ -49,7 +47,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: nowrap;
       margin-bottom: 10px;
       max-width: 85%;
       margin: auto;
@@ -58,113 +55,110 @@
     /* Fix Export Buttons Alignment */
     .dt-buttons {
       display: flex;
-      gap: 3px; /* Minimized gap between buttons */
-      flex-wrap: nowrap;
+      gap: 3px;
     }
 
     /* Fix Search Bar Alignment */
     .dataTables_filter {
-      margin-left: auto; /* Push search bar to the right */
-    }
-
-    .dataTables_filter {
+      margin-left: auto;
       text-align: right;
     }
-    .dataTables_filter label {
-      font-weight: bold;
-    }
 
-    .dataTables_filter input {
-      padding: 6px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-    }
-
-    /* Ensure proper table column spacing */
     #table1 th, #table1 td {
-      padding: 10px 12px;
+      padding: 12px 15px;
       text-align: center;
       vertical-align: middle;
-      white-space: nowrap;
+      word-wrap: break-word;
+      white-space: normal;
+      font-size: small;
+      width: 25%;
+      border: 1px solid #ddd; /* Add light borders between columns */
     }
 
-    /* Style table headers */
+    /* Header Styling */
     #table1 thead th {
-      background-color: #e0e0e0;
+      background-color: #f1f1f1; /* Light gray background */
       font-weight: bold;
-      border-bottom: 2px solid #bdbdbd;
+      border-bottom: 2px solid #ddd; /* Add a thin line under the header */
     }
 
     /* Abstract toggle styling */
     .abstract-toggle {
       cursor: pointer;
       text-align: center;
+      font-size: small;
     }
 
+    /* Abstract content styling */
     .abstract-content {
-      display: none;
+      text-justify: inter-word;
       background: #f9f9f9;
-      padding: 10px;
-      border-radius: 5px;
-      max-width: 500px;
+      padding: 15px;
+      border-radius: 8px;
       word-wrap: break-word;
+      white-space: normal;
+      max-width: 100%;
+      font-size: 14px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow for the abstract content */
+    }
+
+    #table1 {
+      width: 100%;
+      table-layout: fixed; 
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Add shadow to table */
+    }
+
+    /* Row Styling */
+    tr {
+      border-bottom: 1px solid #ddd; /* Light border between rows */
+    }
+
+    .child-row-content {
+      text-align: justify;
+      text-justify: inter-word;
+      word-wrap: break-word;
+      white-space: normal;
+      max-width: 100%;
+      padding: 10px;
+      font-size: small;
     }
   </style>
 </head>
 <body class="container">
-  <p><i class="footer">This page was last updated on 2025-03-19 12:34:24 UTC</i></p>
+  <p><i class="footer">This page was last updated on 2025-04-25 13:10:02 UTC</i></p>
 
-  <!-- Intro Button -->
-  <div class="note info" onclick="startIntro()">
-    <p>
-      <button type="button" class="intro-button">
-        Click here for a quick intro of the page! <i class="material-icons">help</i>
-      </button>
-    </p>
-  </div>
-  
-  <!-- Export Buttons and Search Bar at the Top -->
   <div class="export-container">
-    <div class="dt-buttons"></div> <!-- Export buttons on the left -->
-    <div class="dataTables_filter"></div> <!-- Search bar on the right -->
+    <div class="dt-buttons"></div>
+    <div class="dataTables_filter"></div>
   </div>
-         
-    <!-- System Biology Models -->
-    <div data-intro="This table displays algorithm performance metrics.">
+
+  <div>
     <h3 id="algorithm_metrics">System Biology Models</h3>
     <table id="table1" class="display wrap" style="width:100%">
-        <thead>
+      <thead>
         <tr>
-            <th>Abstract</th>
-            
-            <th>Model Name</th>
-            
-            <th>Number of Species</th>
-            
-            <th>Number of Parameters</th>
-            
+          <th>Abstract</th>
+          <th>Model Name</th>
+          <th>Number of Species</th>
+          <th>Number of Parameters</th>
         </tr>
-        </thead>
+      </thead>
 
-        <tbody>
+      <tbody>
         
         <tr>
-            <!-- Abstract Toggle Button -->
-            <td class="abstract-toggle">
+          <td class="abstract-toggle">
             <i class="material-icons toggle-icon">visibility_off</i>
-            </td>
-            
-            <td>Teusink2000_Glycolysis</td>
-            
-            <td>26</td>
-            
-            <td>15</td>
-            
+          </td>
+          <td>Teusink2000_Glycolysis</td>
+          <td>26</td>
+          <td>15</td>
         </tr>
-        <!-- Abstract Description Row -->
         <tr class="abstract-row" style="display:none;">
-            <td colspan="5">
-            <div class="abstract-content"><body xmlns="http://www.w3.org/1999/xhtml">
+          <td colspan="4">
+            <div class="abstract-content">
+              <!-- Render HTML content from Python backend here -->
+              <body xmlns="http://www.w3.org/1999/xhtml">
     <p>
       <b>Can yeast glycolysis be understood in terms of in vitro kinetics of the constituent enzymes? Testing biochemistry.</b>
       <br/>
@@ -434,27 +428,24 @@
           <p>In summary, you are entitled to use this encoded model in absolutely any manner you deem suitable, verbatim, or with modification, alone or embedded it in a larger context, redistribute it, commercially or not, in a restricted way or not.</p>
           <br/>
           <p>To cite BioModels Database, please use:      <a href="http://www.ncbi.nlm.nih.gov/pubmed/20587024" target="_blank">Li C, Donizelli M, Rodriguez N, Dharuri H, Endler L, Chelliah V, Li L, He E, Henry A, Stefan MI, Snoep JL, Hucka M, Le Novère N, Laibe C (2010) BioModels Database: An enhanced, curated and annotated resource for published quantitative kinetic models. BMC Syst Biol., 4:92.</a></p>
-        </body></div>
-            </td>
+        </body>
+            </div>
+          </td>
         </tr>
         
         <tr>
-            <!-- Abstract Toggle Button -->
-            <td class="abstract-toggle">
+          <td class="abstract-toggle">
             <i class="material-icons toggle-icon">visibility_off</i>
-            </td>
-            
-            <td>Dwivedi2014 - Crohns IL6 Disease model - Anti-IL6R Antibody</td>
-            
-            <td>44</td>
-            
-            <td>53</td>
-            
+          </td>
+          <td>Dwivedi2014 - Crohns IL6 Disease model - Anti-IL6R Antibody</td>
+          <td>44</td>
+          <td>53</td>
         </tr>
-        <!-- Abstract Description Row -->
         <tr class="abstract-row" style="display:none;">
-            <td colspan="5">
-            <div class="abstract-content"><body xmlns="http://www.w3.org/1999/xhtml">
+          <td colspan="4">
+            <div class="abstract-content">
+              <!-- Render HTML content from Python backend here -->
+              <body xmlns="http://www.w3.org/1999/xhtml">
     <div class="dc:title">Dwivedi2014 - Crohns IL6 Disease model -
 Anti-IL6R Antibody</div>
     <div class="dc:description">This model is comprised of four models:
@@ -538,80 +529,150 @@ biomarker C-Reactive Protein (CRP) expression.
   <a href="http://creativecommons.org/publicdomain/zero/1.0/" title="Access to: CC0 1.0 Universal (CC0 1.0), Public Domain Dedication">CC0
   Public Domain Dedication</a> for more information.</p>
             </div>
-          </body></div>
-            </td>
+          </body>
+            </div>
+          </td>
         </tr>
         
         <tr>
-            <!-- Abstract Toggle Button -->
-            <td class="abstract-toggle">
+          <td class="abstract-toggle">
             <i class="material-icons toggle-icon">visibility_off</i>
-            </td>
-            
-            <td>Tang2020 - Estimation of transmission risk of COVID-19 and impact of public health interventions</td>
-            
-            <td>8</td>
-            
-            <td>16</td>
-            
+          </td>
+          <td>Dwivedi2014 - Crohns IL6 Disease model - Anti-IL6R Antibody</td>
+          <td>44</td>
+          <td>53</td>
         </tr>
-        <!-- Abstract Description Row -->
         <tr class="abstract-row" style="display:none;">
-            <td colspan="5">
-            <div class="abstract-content"><body xmlns="http://www.w3.org/1999/xhtml">
-    <p>Since the emergence of the first cases in Wuhan, China, the novel coronavirus (2019-nCoV) infection has been quickly spreading out to other provinces and neighboring countries. Estimation of the basic reproduction number by means of mathematical modeling can be helpful for determining the potential and severity of an outbreak and providing critical information for identifying the type of disease interventions and intensity. A deterministic compartmental model was devised based on the clinical progression of the disease, epidemiological status of the individuals, and intervention measures. The estimations based on likelihood and model analysis show that the control reproduction number may be as high as 6.47 (95% CI 5.71–7.23). Sensitivity analyses show that interventions, such as intensive contact tracing followed by quarantine and isolation, can effectively reduce the control reproduction number and transmission risk, with the effect of travel restriction adopted by Wuhan on 2019-nCoV infection in Beijing being almost equivalent to increasing quarantine by a 100 thousand baseline value. It is essential to assess how the expensive, resource-intensive measures implemented by the Chinese authorities can contribute to the prevention and control of the 2019-nCoV infection, and how long they should be maintained. Under the most restrictive measures, the outbreak is expected to peak within two weeks (since 23 January 2020) with a significant low peak value. With travel restriction (no imported exposed individuals to Beijing), the number of infected individuals in seven days will decrease by 91.14% in Beijing, compared with the scenario of no travel restriction.</p>
-  </body></div>
-            </td>
+          <td colspan="4">
+            <div class="abstract-content">
+              <!-- Render HTML content from Python backend here -->
+              <body xmlns="http://www.w3.org/1999/xhtml">
+    <div class="dc:title">Dwivedi2014 - Crohns IL6 Disease model -
+Anti-IL6R Antibody</div>
+    <div class="dc:description">This model is comprised of four models:
+<br/>
+    <ul>
+      <li>
+        <a href="http://www.ebi.ac.uk/biomodels-main/BIOMD0000000534">[BIOMD0000000534]</a>
+  Healthy Volunteer model
+  <br/></li>
+        <li>
+          <a href="http://www.ebi.ac.uk/biomodels-main/BIOMD0000000535">[BIOMD0000000535]</a>
+  Crohn&apos;s Disease - IL-6 Antibody
+  <br/></li>
+          <li>
+            <a href="http://www.ebi.ac.uk/biomodels-main/BIOMD0000000536">[BIOMD0000000536]</a>
+  Crohn&apos;s Disease - sgp130FC</li>
+            <li>
+              <a href="http://www.ebi.ac.uk/biomodels-main/BIOMD0000000537">[BIOMD0000000537]</a>
+  Crohn&apos;s Disease - IL-6Ra Antibody
+  <br/></li>
+            </ul>Possible avenues for Interleukin-6 (IL-6) inhibition in
+treating Crohn&apos;s disease are compared here. Each model refers to
+separate ligands. The system simulates differential activity of the
+ligands on the signalling of IL-6. 
+<span class="st">This affects Signal Transducer and Activator of
+Transcription 3</span> (STAT3) activity on the production of
+biomarker C-Reactive Protein (CRP) expression.
+<br/>Figures referring to this Crohn&apos;s Disease model are 3a, 4d,
+4e, 4f and 5b.
+<br/></div>
+            <div class="dc:bibliographicCitation">
+              <p>This model is described in the article:</p>
+              <div class="bibo:title">
+                <a href="http://identifiers.org/pubmed/24402116" title="Access to this publication">A multiscale model of
+    interleukin-6-mediated immune regulation in Crohn&apos;s disease and
+    its application in drug discovery and development.</a>
+              </div>
+              <div class="bibo:authorList">Dwivedi G, Fitz L, Hegen M, Martin
+  SW, Harrold J, Heatherington A, Li C.</div>
+              <div class="bibo:Journal">CPT Pharmacometrics Syst Pharmacol
+  2014; 3: e89</div>
+              <p>Abstract:</p>
+              <div class="bibo:abstract">
+                <p>In this study, we have developed a multiscale systems model
+    of interleukin (IL)-6-mediated immune regulation in Crohn&apos;s
+    disease, by integrating intracellular signaling with
+    organ-level dynamics of pharmacological markers underlying the
+    disease. This model was linked to a general pharmacokinetic
+    model for therapeutic monoclonal antibodies and used to
+    comparatively study various biotherapeutic strategies targeting
+    IL-6-mediated signaling in Crohn&apos;s disease. Our work
+    illustrates techniques to develop mechanistic models of disease
+    biology to study drug-system interaction. Despite a sparse
+    training data set, predictions of the model were qualitatively
+    validated by clinical biomarker data from a pilot trial with
+    tocilizumab. Model-based analysis suggests that strategies
+    targeting IL-6, IL-6R?, or the IL-6/sIL-6R? complex are less
+    effective at suppressing pharmacological markers of Crohn&apos;s
+    than dual targeting the IL-6/sIL-6R? complex in addition to
+    IL-6 or IL-6R?. The potential value of multiscale system
+    pharmacology modeling in drug discovery and development is also
+    discussed.CPT: Pharmacometrics &amp; Systems Pharmacology
+    (2014) 3, e89; doi:10.1038/psp.2013.64; advance online
+    publication 8 January 2014.</p>
+              </div>
+            </div>
+            <div class="dc:publisher">
+              <p>This model is hosted on 
+  <a href="http://www.ebi.ac.uk/biomodels/">BioModels Database</a>
+  and identified by: 
+  <a href="http://identifiers.org/biomodels.db/BIOMD0000000537">BIOMD0000000537</a>.</p>
+              <p>To cite BioModels Database, please use: 
+  <a href="http://identifiers.org/pubmed/20587024" title="Latest BioModels Database publication">BioModels Database:
+  An enhanced, curated and annotated resource for published
+  quantitative kinetic models</a>.</p>
+            </div>
+            <div class="dc:license">
+              <p>To the extent possible under law, all copyright and related or
+  neighbouring rights to this encoded model have been dedicated to
+  the public domain worldwide. Please refer to 
+  <a href="http://creativecommons.org/publicdomain/zero/1.0/" title="Access to: CC0 1.0 Universal (CC0 1.0), Public Domain Dedication">CC0
+  Public Domain Dedication</a> for more information.</p>
+            </div>
+          </body>
+            </div>
+          </td>
         </tr>
         
-        </tbody>
+        <tr>
+          <td class="abstract-toggle">
+            <i class="material-icons toggle-icon">visibility_off</i>
+          </td>
+          <td>Tang2020 - Estimation of transmission risk of COVID-19 and impact of public health interventions</td>
+          <td>8</td>
+          <td>16</td>
+        </tr>
+        <tr class="abstract-row" style="display:none;">
+          <td colspan="4">
+            <div class="abstract-content">
+              <!-- Render HTML content from Python backend here -->
+              <body xmlns="http://www.w3.org/1999/xhtml">
+    <p>Since the emergence of the first cases in Wuhan, China, the novel coronavirus (2019-nCoV) infection has been quickly spreading out to other provinces and neighboring countries. Estimation of the basic reproduction number by means of mathematical modeling can be helpful for determining the potential and severity of an outbreak and providing critical information for identifying the type of disease interventions and intensity. A deterministic compartmental model was devised based on the clinical progression of the disease, epidemiological status of the individuals, and intervention measures. The estimations based on likelihood and model analysis show that the control reproduction number may be as high as 6.47 (95% CI 5.71–7.23). Sensitivity analyses show that interventions, such as intensive contact tracing followed by quarantine and isolation, can effectively reduce the control reproduction number and transmission risk, with the effect of travel restriction adopted by Wuhan on 2019-nCoV infection in Beijing being almost equivalent to increasing quarantine by a 100 thousand baseline value. It is essential to assess how the expensive, resource-intensive measures implemented by the Chinese authorities can contribute to the prevention and control of the 2019-nCoV infection, and how long they should be maintained. Under the most restrictive measures, the outbreak is expected to peak within two weeks (since 23 January 2020) with a significant low peak value. With travel restriction (no imported exposed individuals to Beijing), the number of infected individuals in seven days will decrease by 91.14% in Beijing, compared with the scenario of no travel restriction.</p>
+  </body>
+            </div>
+          </td>
+        </tr>
+        
+      </tbody>
     </table>
-    </div>
+  </div>
 
   <script>
-  $(document).ready(function() {
-      var table = $('#table1').DataTable({
-            data: tableData, // Ensure this is defined and has the correct structure
-            columns: [
-            { data: "Abstract" },
-            { data: "Model Name" },
-            { data: "Number of Species" },
-            { data: "Number of Parameters" },
-            ],
-          paging: true,
-          autoWidth: false,
-          scrollX: false,
-          fixedHeader: true,
-          dom: '<"export-container"Bf>rtip', // Ensures search bar is on the right
-          buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
-          columnDefs: [
-              { "className": "dt-center", "targets": "_all" },
-              { "width": "120px", "targets": 0 },
-              { "width": "160px", "targets": 1 },
-              { "width": "80px", "targets": [2, 3, 4] }
-          ]
-      });
-
-      $(".dataTables_filter").addClass("text-right");
-    });
-
-
-    document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".abstract-toggle .toggle-icon").forEach(icon => {
-        icon.addEventListener("click", function () {
-        const tr = this.closest('tr');
-        const abstractRow = tr.nextElementSibling;
-        if (abstractRow.style.display === "none" || abstractRow.style.display === "") {
-            abstractRow.style.display = "table-row";
-            this.textContent = "visibility";  // Change icon
+    $(document).ready(function() {
+      // Toggle abstract visibility on click
+      $(".abstract-toggle .toggle-icon").click(function() {
+        var tr = $(this).closest('tr');
+        var abstractRow = tr.next('.abstract-row');
+        if (abstractRow.is(":visible")) {
+          abstractRow.hide();
+          $(this).text('visibility_off');
         } else {
-            abstractRow.style.display = "none";
-            this.textContent = "visibility_off";  // Revert icon
+          abstractRow.show();
+          $(this).text('visibility');
         }
-        })
+      });
     });
-    });
-
   </script>
 </body>
 </html>

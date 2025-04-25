@@ -37,7 +37,6 @@ def generate_markdown_report(input_folder: str,
             file = os.path.abspath(os.path.join(input_folder, file))
             biomodel = BasicoModel(sbml_file_path=file)
             metadata_list.append(biomodel.get_model_metadata())
-
     metadata_df = pd.DataFrame(metadata_list)
     metadata_records = metadata_df.to_dict(orient='records')
 
