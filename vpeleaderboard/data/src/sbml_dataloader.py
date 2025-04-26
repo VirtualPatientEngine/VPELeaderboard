@@ -74,7 +74,7 @@ class SBMLDataModule(LightningDataModule):
         script_dir = "\\".join(script_dir.split("\\")[:-1])
         script_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
         with hydra.initialize(version_base=None,
-                              config_path="../configs"):
+                              config_path="../utils"):
             cfg = hydra.compose(config_name="config")
 
         model_directory = os.path.join(script_dir, cfg.model_directory)
