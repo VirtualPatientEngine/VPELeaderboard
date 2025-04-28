@@ -79,20 +79,22 @@ git checkout -b add-new-your_model
 
 Each SBML model must be accompanied by a .yaml configuration file that defines the simulation durations. These parameters control how long the model runs for training, validation, and testing phases during automated processing.
 
-Your .yaml file must include the following keys:
+Your `.yaml` file must include the following fields:
 
-Key | Type | Description
-train_duration | int | Number of simulation time units allocated for training.
-val_duration | int | Duration allocated for validation phase.
-test_duration | int | Simulation time reserved for testing.
+| Key               | Type   | Description                                                                                                                                                   |
+|-------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `train_duration`  | `int`  | Defines the **duration** (in simulation time units) allocated for the **training phase** of the model. This value should match the scale of the model's dataset. |
+| `val_duration`    | `int`  | Defines the **duration** (in simulation time units) allocated for the **validation phase**.                                             |
+| `test_duration`   | `int`  | Defines the **duration** (in simulation time units) allocated for the **testing phase**. Should align with testing scenarios in the model’s intended use.       |
+
 
 Example Configuration
+
 ```bash
 train_duration: 6
 val_duration: 3
 test_duration: 5
 ```
-> ℹ️ These durations are used by internal simulation engines and are essential for leaderboard computation. Ensure that the values are consistent with the model’s expected simulation scale.
 
 - Put the XML model file into the models/ directory.
 
@@ -121,5 +123,6 @@ git push origin add-new-model-your_model
 5. Click **"Create pull request"**.
 
 [Virtual Patient Engine Docs](https://virtualpatientengine.github.io/AIAgents4Pharma/ops/DevOps/)
+
 
 

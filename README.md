@@ -17,7 +17,7 @@ Our toolkit currently consists of the following components:
 
 ---
 
-![alt text](image-1.png)
+![alt text](image.png)
 
 ## Table of Contents
 
