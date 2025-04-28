@@ -18,24 +18,26 @@ Follow the steps below to get started with VPELeaderboard:
 
 Clone the repository to your local machine:
 
-```bash
-git clone https://github.com/your-username/VPELeaderboard.git
-```
-#### 2. Install Dependencies
+    ```bash
+    git clone https://github.com/your-username/VPELeaderboard.git
+    ``` 
+
+#### 2. Set Up the Environment
+Ensure that your Python environment is properly set up:
+
+    ```bash
+    python -m venv vpe-env
+    source vpe-env/bin/activate  # For macOS/Linux
+    vpe-env\\Scripts\\activate     # For Windows
+    ```
+#### 3. Install Dependencies
 
 Navigate to the project directory and install the required dependencies:
 
-```bash
-pip install -r requirements.txt
-```
-#### 3. Set Up the Environment
-Ensure that your Python environment is properly set up:
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-```bash
-python -m venv vpe-env
-source vpe-env/bin/activate  # For macOS/Linux
-vpe-env\\Scripts\\activate     # For Windows
-```
 ### Contribute Your Models
 To contribute a new model, follow the guidelines in the How to Add Your Models
  section. Detailed instructions are available in the documentation.

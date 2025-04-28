@@ -24,7 +24,7 @@ To submit a model, **you must provide both of the following**:
 | YAML Configuration File | `your_model.yaml` | `vpeleaderboard/data/configs/` |
 
 
-> ⚠️ Kindly ensure both files are present when submitting your model. Submissions with only one file will not be processed. Every XML model file must have a corresponding YAML configuration file with the same base name..
+> ⚠️ Kindly ensure both files are present when submitting your model. Submissions with only one file will not be processed. Every XML model file must have a corresponding YAML configuration file with the same base name.
 
 ---
 
