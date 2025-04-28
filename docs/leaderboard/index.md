@@ -37,7 +37,7 @@
 
     /* Ensure table is centered and does not stretch unnecessarily */
     .dataTables_wrapper {
-      max-width: 85%;
+      max-width: 100%;
       margin: auto;
       overflow-x: hidden;
     }
@@ -47,7 +47,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: nowrap;
       margin-bottom: 10px;
       max-width: 85%;
       margin: auto;
@@ -57,12 +56,12 @@
     .dt-buttons {
       display: flex;
       gap: 3px; /* Minimized gap between buttons */
-      flex-wrap: nowrap;
     }
 
     /* Fix Search Bar Alignment */
     .dataTables_filter {
       margin-left: auto; /* Push search bar to the right */
+      text-align: right;
     }
 
     .dataTables_filter {
@@ -78,48 +77,54 @@
       border: 1px solid #ccc;
     }
 
-    /* Ensure proper table column spacing */
-    #table1 th, #table1 td {
-      padding: 10px 12px;
-      text-align: center;
-      vertical-align: middle;
-      white-space: nowrap;
+    #table1 {
+      width: 100%;
+      table-layout: fixed;  /* Forces equal width for all columns */
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Add shadow to table */
     }
 
     /* Style table headers */
-    #table1 thead th {
-      background-color: #e0e0e0;
-      font-weight: bold;
-      border-bottom: 2px solid #bdbdbd;
-    }
-
-    /* Abstract toggle styling */
-    .abstract-toggle {
-      cursor: pointer;
+    #table1 th ,#table1 td {
+      padding: 12px 15px;
       text-align: center;
+      vertical-align: middle;
+      word-wrap: break-word;
+      white-space: normal;
+      font-size: small;
+      width: 25%;
+      border: 1px solid #ddd; /* Add light borders between columns */
     }
 
-    .abstract-content {
-      display: none;
-      background: #f9f9f9;
-      padding: 10px;
-      border-radius: 5px;
-      max-width: 500px;
+    #table1 thead th {
+      background-color: #f1f1f1; /* Light gray background */
+      font-weight: bold;
+      border-bottom: 2px solid #ddd; /* Add a thin line under the header */
+    }
+
+    #table1 {
+      width: 100%;
+      table-layout: fixed; 
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Add shadow to table */
+    }
+
+    /* Row Styling */
+    tr {
+      border-bottom: 1px solid #ddd; /* Light border between rows */
+    }
+
+    .child-row-content {
+      text-align: justify;
+      text-justify: inter-word;
       word-wrap: break-word;
+      white-space: normal;
+      max-width: 100%;
+      padding: 10px;
+      font-size: small;
     }
   </style>
 </head>
 <body class="container">
-  <p><i class="footer">This page was last updated on 2025-03-19 12:29:25 UTC</i></p>
-
-  <!-- Intro Button -->
-  <div class="note info" onclick="startIntro()">
-    <p>
-      <button type="button" class="intro-button">
-        Click here for a quick intro of the page! <i class="material-icons">help</i>
-      </button>
-    </p>
-  </div>
+  <p><i class="footer">This page was last updated on 2025-04-26 21:06:53 UTC</i></p>
   
   <!-- Export Buttons and Search Bar at the Top -->
   <div class="export-container">
@@ -133,7 +138,7 @@
     <table id="table1" class="display wrap" style="width:100%">
     <thead>
         <tr>
-            <th>Abstract</th>
+            <!-- <th>Abstract</th> -->
             
                 <th>Rank</th>
             
@@ -153,10 +158,10 @@
     <tbody>
         
         <tr>
-            <td class="abstract-toggle">
+            <!-- <td class="abstract-toggle">
                 <i class="material-icons toggle-icon">visibility_off</i>
-                <div class="abstract-content">No abstract available</div>
-            </td>
+                <div class="abstract-content">None</div>
+            </td> -->
             
                 <td>🏅 1</td>
             
@@ -173,10 +178,10 @@
         </tr>
         
         <tr>
-            <td class="abstract-toggle">
+            <!-- <td class="abstract-toggle">
                 <i class="material-icons toggle-icon">visibility_off</i>
-                <div class="abstract-content">No abstract available</div>
-            </td>
+                <div class="abstract-content">None</div>
+            </td> -->
             
                 <td>🏅 2</td>
             
@@ -193,10 +198,10 @@
         </tr>
         
         <tr>
-            <td class="abstract-toggle">
+            <!-- <td class="abstract-toggle">
                 <i class="material-icons toggle-icon">visibility_off</i>
-                <div class="abstract-content">No abstract available</div>
-            </td>
+                <div class="abstract-content">None</div>
+            </td> -->
             
                 <td>🏅 3</td>
             
@@ -213,10 +218,10 @@
         </tr>
         
         <tr>
-            <td class="abstract-toggle">
+            <!-- <td class="abstract-toggle">
                 <i class="material-icons toggle-icon">visibility_off</i>
-                <div class="abstract-content">No abstract available</div>
-            </td>
+                <div class="abstract-content">None</div>
+            </td> -->
             
                 <td>🏅 4</td>
             
@@ -233,10 +238,10 @@
         </tr>
         
         <tr>
-            <td class="abstract-toggle">
+            <!-- <td class="abstract-toggle">
                 <i class="material-icons toggle-icon">visibility_off</i>
-                <div class="abstract-content">No abstract available</div>
-            </td>
+                <div class="abstract-content">None</div>
+            </td> -->
             
                 <td>🏅 5</td>
             
@@ -253,10 +258,10 @@
         </tr>
         
         <tr>
-            <td class="abstract-toggle">
+            <!-- <td class="abstract-toggle">
                 <i class="material-icons toggle-icon">visibility_off</i>
-                <div class="abstract-content">No abstract available</div>
-            </td>
+                <div class="abstract-content">None</div>
+            </td> -->
             
                 <td>🏅 6</td>
             
@@ -273,10 +278,10 @@
         </tr>
         
         <tr>
-            <td class="abstract-toggle">
+            <!-- <td class="abstract-toggle">
                 <i class="material-icons toggle-icon">visibility_off</i>
-                <div class="abstract-content">No abstract available</div>
-            </td>
+                <div class="abstract-content">None</div>
+            </td> -->
             
                 <td>🏅 7</td>
             
@@ -293,10 +298,10 @@
         </tr>
         
         <tr>
-            <td class="abstract-toggle">
+            <!-- <td class="abstract-toggle">
                 <i class="material-icons toggle-icon">visibility_off</i>
-                <div class="abstract-content">No abstract available</div>
-            </td>
+                <div class="abstract-content">None</div>
+            </td> -->
             
                 <td>🏅 8</td>
             
@@ -313,10 +318,10 @@
         </tr>
         
         <tr>
-            <td class="abstract-toggle">
+            <!-- <td class="abstract-toggle">
                 <i class="material-icons toggle-icon">visibility_off</i>
-                <div class="abstract-content">No abstract available</div>
-            </td>
+                <div class="abstract-content">None</div>
+            </td> -->
             
                 <td>🏅 9</td>
             
@@ -333,10 +338,10 @@
         </tr>
         
         <tr>
-            <td class="abstract-toggle">
+            <!-- <td class="abstract-toggle">
                 <i class="material-icons toggle-icon">visibility_off</i>
-                <div class="abstract-content">No abstract available</div>
-            </td>
+                <div class="abstract-content">None</div>
+            </td> -->
             
                 <td>🏅 10</td>
             
@@ -353,10 +358,10 @@
         </tr>
         
         <tr>
-            <td class="abstract-toggle">
+            <!-- <td class="abstract-toggle">
                 <i class="material-icons toggle-icon">visibility_off</i>
-                <div class="abstract-content">No abstract available</div>
-            </td>
+                <div class="abstract-content">None</div>
+            </td> -->
             
                 <td>🏅 11</td>
             
@@ -373,10 +378,10 @@
         </tr>
         
         <tr>
-            <td class="abstract-toggle">
+            <!-- <td class="abstract-toggle">
                 <i class="material-icons toggle-icon">visibility_off</i>
-                <div class="abstract-content">No abstract available</div>
-            </td>
+                <div class="abstract-content">None</div>
+            </td> -->
             
                 <td>🏅 12</td>
             
@@ -393,10 +398,10 @@
         </tr>
         
         <tr>
-            <td class="abstract-toggle">
+            <!-- <td class="abstract-toggle">
                 <i class="material-icons toggle-icon">visibility_off</i>
-                <div class="abstract-content">No abstract available</div>
-            </td>
+                <div class="abstract-content">None</div>
+            </td> -->
             
                 <td>🏅 13</td>
             
@@ -413,10 +418,10 @@
         </tr>
         
         <tr>
-            <td class="abstract-toggle">
+            <!-- <td class="abstract-toggle">
                 <i class="material-icons toggle-icon">visibility_off</i>
-                <div class="abstract-content">No abstract available</div>
-            </td>
+                <div class="abstract-content">None</div>
+            </td> -->
             
                 <td>🏅 14</td>
             
@@ -433,10 +438,10 @@
         </tr>
         
         <tr>
-            <td class="abstract-toggle">
+            <!-- <td class="abstract-toggle">
                 <i class="material-icons toggle-icon">visibility_off</i>
-                <div class="abstract-content">No abstract available</div>
-            </td>
+                <div class="abstract-content">None</div>
+            </td> -->
             
                 <td>🏅 15</td>
             
@@ -453,10 +458,10 @@
         </tr>
         
         <tr>
-            <td class="abstract-toggle">
+            <!-- <td class="abstract-toggle">
                 <i class="material-icons toggle-icon">visibility_off</i>
-                <div class="abstract-content">No abstract available</div>
-            </td>
+                <div class="abstract-content">None</div>
+            </td> -->
             
                 <td>🏅 16</td>
             
@@ -473,10 +478,10 @@
         </tr>
         
         <tr>
-            <td class="abstract-toggle">
+            <!-- <td class="abstract-toggle">
                 <i class="material-icons toggle-icon">visibility_off</i>
-                <div class="abstract-content">No abstract available</div>
-            </td>
+                <div class="abstract-content">None</div>
+            </td> -->
             
                 <td>🏅 17</td>
             
@@ -493,10 +498,10 @@
         </tr>
         
         <tr>
-            <td class="abstract-toggle">
+            <!-- <td class="abstract-toggle">
                 <i class="material-icons toggle-icon">visibility_off</i>
-                <div class="abstract-content">No abstract available</div>
-            </td>
+                <div class="abstract-content">None</div>
+            </td> -->
             
                 <td>🏅 18</td>
             
@@ -513,10 +518,10 @@
         </tr>
         
         <tr>
-            <td class="abstract-toggle">
+            <!-- <td class="abstract-toggle">
                 <i class="material-icons toggle-icon">visibility_off</i>
-                <div class="abstract-content">No abstract available</div>
-            </td>
+                <div class="abstract-content">None</div>
+            </td> -->
             
                 <td>🏅 19</td>
             
@@ -533,10 +538,10 @@
         </tr>
         
         <tr>
-            <td class="abstract-toggle">
+            <!-- <td class="abstract-toggle">
                 <i class="material-icons toggle-icon">visibility_off</i>
-                <div class="abstract-content">No abstract available</div>
-            </td>
+                <div class="abstract-content">None</div>
+            </td> -->
             
                 <td>🏅 20</td>
             
@@ -563,13 +568,13 @@
           autoWidth: false,
           scrollX: false,
           fixedHeader: true,
-          dom: '<"export-container"Bf>rtip', // Ensures search bar is on the right
-          buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+          // dom: '<"export-container"Bf>rtip', // Ensures search bar is on the right
+          // buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
           columnDefs: [
               { "className": "dt-center", "targets": "_all" },
               { "width": "120px", "targets": 0 },
               { "width": "160px", "targets": 1 },
-              { "width": "80px", "targets": [2, 3, 4] }
+              { "width": "80px", "targets": [2, 3] }
           ]
       });
 
