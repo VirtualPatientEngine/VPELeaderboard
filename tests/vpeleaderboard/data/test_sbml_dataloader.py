@@ -50,7 +50,6 @@ def test_setup(sbml_data_module):
     Test the setup method.
     """
     sbml_data_module.config = {"train_duration": 100,'val_duration': 30, "test_duration": 50}
-
     sbml_file_path = os.path.abspath(MODEL_PATH)
     sbml_data_module.sbml_file_path = sbml_file_path
     
