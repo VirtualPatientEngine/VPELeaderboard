@@ -19,7 +19,7 @@ Our toolkit currently consists of the following components:
 
 ---
 
-![alt text](docs/images/image.png)
+![alt text](docs/assets/images/image.png)
 
 ## Table of Contents
 

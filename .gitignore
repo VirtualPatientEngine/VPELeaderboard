@@ -6,6 +6,11 @@ __pycache__/
 # C extensions
 *.so
 
+# files
+/docs/algorithms/index.md
+/docs/data/index.md
+/docs/leaderboard/index.md
+
 # Distribution / packaging
 .Python
 build/
