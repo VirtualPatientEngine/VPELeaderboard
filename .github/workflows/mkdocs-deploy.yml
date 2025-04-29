@@ -4,9 +4,11 @@ on:
     branches:
       - main
 # Allows you to run this workflow manually from the Actions tab
+
   workflow_dispatch:
 permissions:
   contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -16,21 +18,24 @@ jobs:
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v4 # Set up Python environment
         with:
           python-version: 3.12
-      - name: Install the requirements
+      - name: Install the requirements # Install dependencies for the workflow
         shell: bash -l {0}
         run: |
           pip3 install -r requirements.txt
           pip install -e .
       # Run the python scripts   
-      - name: Run literature_fetch
+
+      - name: Process and update data
         shell: bash -l {0}
         run: |
+          echo "🚀 Processing models and updating data section..."
           python -m app.algorithms.table  
           python -m app.data.markdown_report
           python -m app.leaderboard.table
+      # Cache dependencies for later steps    
       - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
       - uses: actions/cache@v3
         with:
@@ -38,5 +43,5 @@ jobs:
           path: .cache
           restore-keys: |
             mkdocs-material-
-      - run: pip install mkdocs-material 
-      - run: mkdocs gh-deploy --clean --force 
+      - run: pip install mkdocs-material # Install MkDocs Material to build the documentation
+      - run: mkdocs gh-deploy --clean --force # Deploy the website to GitHub Pages

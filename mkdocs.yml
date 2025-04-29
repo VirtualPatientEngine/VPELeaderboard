@@ -5,10 +5,11 @@ nav:
 - Home: index.md
 - Getting started: user-guide/index.md
 - Data: 
-  - Data: data/index.md
+  - Data Overview: data/index.md
+  - Model Submission Guide: data/loading_model.md
   - Tutorials: 
     - SBML Dataloader: notebooks/sbml_dataloader.ipynb
-  - Models: 
+  - Code Documentation: 
     - System Bio Model: data/sys_bio_model.md
     - Basico Model: data/basico_model.md
     - SBML Dataloader: data/sbml_dataloader.md

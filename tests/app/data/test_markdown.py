@@ -14,7 +14,6 @@ def test_validate_sbml_file_path_success():
     """
     assert os.path.exists("vpeleaderboard/data/models")
     assert len([f for f in os.listdir("vpeleaderboard/data/models") if f.endswith(".xml")]) > 0
-
     sbml_file_path = os.path.abspath(MODEL_PATH)
 
     model = BasicoModel(sbml_file_path=sbml_file_path)
