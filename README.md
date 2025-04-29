@@ -13,7 +13,7 @@ We invite you to explore the repository and gain a clear understanding of the mo
 
 Our toolkit currently consists of the following components:
 
-- **Data:** Explore integrated datasets, including ordinary differential equation models in SBML format, which are specifically designed to streamline the analysis and experimentation processes for biomodel simulation.
+- **Data:** Explore integrated datasets, including ordinary differential equation models in SBML format.
 - **Algorithms:** A collection of cutting-edge algorithms that have been developed to tackle time series forecasting and predictive modeling tasks.
 - **Leaderboard:** An interactive leaderboard that evaluates and compares the performance of time series forecasting models, focusing on how well they predict the trajectories of simulated biological processes.
 
@@ -53,6 +53,7 @@ Ensure that your Python environment is properly set up:
     source vpe-env/bin/activate  # For macOS/Linux
     vpe-env\\Scripts\\activate     # For Windows
     ```
+    
 3. **Install dependencies:**
 
     ```bash

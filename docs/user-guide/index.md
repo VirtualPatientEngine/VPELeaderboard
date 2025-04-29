@@ -16,29 +16,32 @@ Follow the steps below to get started with VPELeaderboard:
 
 Clone the repository to your local machine:
 
-    ```
+
     git clone https://github.com/your-username/VPELeaderboard.git
-    ``` 
+
+
+Ensure that you replace `your-username` with your actual GitHub username.
+
 
 #### 2. Set Up the Environment
 Ensure that your Python environment is properly set up:
 
-    ```
+
     python -m venv vpe-env
     source vpe-env/bin/activate  # For macOS/Linux
     vpe-env\\Scripts\\activate     # For Windows
-    ```
+
+
 #### 3. Install Dependencies
 
 Navigate to the project directory and install the required dependencies:
 
-    ```
+
     pip install -r requirements.txt
-    ```
+
 
 ### Contribute Your Models
-To contribute a new model, follow the guidelines in the How to Add Your Models
- section. Detailed instructions are available in the documentation.
+To contribute new models to the leaderboard, please follow the instructions in the  [How to Load and Contribute SBML Models](docs/data/loading_model.md) section. This guide provides the necessary steps for preparing and submitting your models, ensuring they are automatically validated and integrated into the leaderboard system via our CI/CD pipeline.
 
 ### Explore Tutorials
 We provide a range of tutorials to assist you in using the platform effectively. Visit the Tutorials section in Data page for comprehensive guides and examples.

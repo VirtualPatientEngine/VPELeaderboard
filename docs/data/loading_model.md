@@ -66,10 +66,12 @@ cd <repo-name>
 
 ### 3. Create a New Branch
 
-Use a descriptive branch name:
+Ensure you use a descriptive branch name that clearly reflects the purpose of your changes:
+
 ```bash
 git checkout -b add-new-your_model
 ```
+This helps maintain clarity and consistency across the project, making it easier to track changes and collaborate effectively.
 
 ---
 
