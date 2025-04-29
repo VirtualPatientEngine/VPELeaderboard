@@ -2,7 +2,7 @@
 # VPELeaderboard
 
 [![Test Status](https://img.shields.io/badge/TESTS%20VPE%20Leaderboard-passing-brightgreen)](https://github.com/VirtualPatientEngine/VPELeaderboard/actions/workflows/tests.yml)
-![Release](https://img.shields.io/github/v/release/VirtualPatientEngine/VPELeaderbord)
+![GitHub Release](https://img.shields.io/github/v/release/VirtualPatientEngine/VPELeaderbord)
 ![Python Version](https://img.shields.io/badge/python-%3E%3D%203.12-blue)
 
 ## Introduction
