@@ -7,17 +7,19 @@
 
 ## Introduction
 
-Welcome to **VPELeaderboard** – an open-source project by **Team VPE** that integrates AI-driven time series models with biological models simulations. This project extends traditional biomodel simulations to forecast future states based on initial conditions, allowing users to engage with and analyze complex biological systems.
+Welcome to **VPELeaderboard**, an open-source project developed by **Team VPE**. The primary objective of this project is to evaluate and benchmark the performance of advanced time series forecasting models when applied to simulated biological data. Unlike traditional methods that rely on handcrafted mathematical models, we focus on directly forecasting simulation results through AI-driven techniques. This leaderboard provides a comprehensive analysis of the strengths and limitations of these models, offering valuable insights into their effectiveness in predicting the dynamics of complex biological systems.
+
+We invite you to explore the repository and gain a clear understanding of the models being tested and their performance metrics.
 
 Our toolkit currently consists of the following components:
 
-- **Data**: Discover integrated datasets that streamline analysis and experimentation for biomodel simulation.
-- **Algorithms**: A collection of cutting-edge algorithms for time series forecasting and predictive modeling.
-- **Leaderboard**: An interactive leaderboard that evaluates and compares algorithmic outputs effortlessly.
+- **Data:** Explore integrated datasets, including ordinary differential equation models in SBML format.
+- **Algorithms:** A collection of cutting-edge algorithms that have been developed to tackle time series forecasting and predictive modeling tasks.
+- **Leaderboard:** An interactive leaderboard that evaluates and compares the performance of time series forecasting models, focusing on how well they predict the trajectories of simulated biological processes.
 
 ---
 
-![alt text](image.png)
+![alt text](docs/images/image.png)
 
 ## Table of Contents
 
@@ -41,13 +43,10 @@ Kickstart your journey with **VPELeaderboard** by using git and following an eas
     git clone https://github.com/VirtualPatientEngine/VPELeaderboard.git
     cd AIAgents4Pharma
     ```
-2. **Install dependencies:**
 
-    ```bash
-    pip install -r requirements.txt
-    ```
-3. **Set Up the Environment**
-Ensure that your Python environment is properly set up:
+2. **Set Up the Environment**
+
+    Ensure that your Python environment is properly set up:
 
     ```bash
     python -m venv vpe-env
@@ -55,21 +54,28 @@ Ensure that your Python environment is properly set up:
     vpe-env\\Scripts\\activate     # For Windows
     ```
 
+3. **Install dependencies:**
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
 ## How To Add Your Models
 
-Follow the instructions in the How to Add Your Models section to contribute new models to the leaderboard.
+To contribute new models to the leaderboard, please follow the instructions in the  [How to Load and Contribute SBML Models](docs/data/loading_model.md) section. This guide provides the necessary steps for preparing and submitting your models, ensuring they are automatically validated and integrated into the leaderboard system via our CI/CD pipeline.
 
 ## Contributing
 
-We welcome contributions to AIAgents4Pharma! Here’s how you can help:
+We greatly appreciate your interest in contributing to VPELeaderboard. To get started, please follow the steps below:
 
-1. **Fork the repository**
-2. **Create a new branch** for your feature (`git checkout -b feat/feature-name`)
-3. **Commit your changes** (`git commit -m 'feat: Add new feature'`)
-4. **Push to the branch** (`git push origin feat/feature-name`)
-5. **Open a pull request** and reach out to any one of us below via Discussions:
+1. **Fork the repository** to create a personal copy of the project.
+2. **Create a new branch** for your feature  or bug fix (`git checkout -b feat/feature-name`)
+3. **Implement the necessary changes** for your contribution.
+3. **Commit your changes** with a clear and concise message (`git commit -m 'feat: Add new feature'`)
+4. **Push your changes** to your forked repository  (`git push origin feat/feature-name`)
+5. **Open a pull request** and engage with us via the Discussions tab to facilitate review.
 
-   _Note: We welcome all contributions, not just programming-related ones. Feel free to open bug reports, suggest new features, or participate as a beta tester. Your support is greatly appreciated!_
+   _Note: Please note: We welcome all types of contributions, not limited to programming. You are encouraged to submit bug reports, propose new features, or participate as a beta tester. We highly value your input and support._
 
 Please stay tuned for more information.
 

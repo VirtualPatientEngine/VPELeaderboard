@@ -125,7 +125,7 @@
   </style>
 </head>
 <body class="container">
-  <p><i class="footer">This page was last updated on 2025-04-26 21:07:06 UTC</i></p>
+  <p><i class="footer">This page was last updated on 2025-04-29 12:09:24 UTC</i></p>
 
   <div class="export-container">
     <div class="dt-buttons"></div>
@@ -555,6 +555,13 @@ biomarker C-Reactive Protein (CRP) expression.
         
       </tbody>
     </table>
+  </div>
+
+  <div>
+    <h3 id="how_to_contribute">How To Add Your Models</h3>
+    <p>
+      To contribute new models to the leaderboard, please follow the instructions in the <a href="docs/data/loading_model.html" target="_blank">Model Submission Guide</a> section. This guide provides the necessary steps for preparing and submitting your models, ensuring they are automatically validated and integrated into the leaderboard system via our CI/CD pipeline.
+    </p>
   </div>
 
   <script>

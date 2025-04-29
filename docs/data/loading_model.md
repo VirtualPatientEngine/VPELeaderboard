@@ -24,7 +24,7 @@ To submit a model, **you must provide both of the following**:
 | YAML Configuration File | `your_model.yaml` | `vpeleaderboard/data/configs/` |
 
 
-> ⚠️ Kindly ensure both files are present when submitting your model. Submissions with only one file will not be processed. Every XML model file must have a corresponding YAML configuration file with the same base name..
+> ⚠️ Kindly ensure both files are present when submitting your model. Submissions with only one file will not be processed. Every XML model file must have a corresponding YAML configuration file with the same base name.
 
 ---
 
@@ -66,14 +66,37 @@ cd <repo-name>
 
 ### 3. Create a New Branch
 
-Use a descriptive branch name:
+Ensure you use a descriptive branch name that clearly reflects the purpose of your changes:
+
 ```bash
 git checkout -b add-new-your_model
 ```
+This helps maintain clarity and consistency across the project, making it easier to track changes and collaborate effectively.
 
 ---
 
 ### 4. Add Your Files
+
+#### YAML Configuration Parameters
+
+Each SBML model must be accompanied by a .yaml configuration file that defines the simulation durations. These parameters control how long the model runs for training, validation, and testing phases during automated processing.
+
+Your `.yaml` file must include the following fields:
+
+| Key               | Type   | Description                                                                                                                                                   |
+|-------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `train_duration`  | `int`  | Defines the **duration** (in simulation time units) allocated for the **training phase** of the model. This value should match the scale of the model's dataset. |
+| `val_duration`    | `int`  | Defines the **duration** (in simulation time units) allocated for the **validation phase**.                                             |
+| `test_duration`   | `int`  | Defines the **duration** (in simulation time units) allocated for the **testing phase**. Should align with testing scenarios in the model’s intended use.       |
+
+
+Example Configuration
+
+```bash
+train_duration: 6
+val_duration: 3
+test_duration: 5
+```
 
 - Put the XML model file into the models/ directory.
 
@@ -102,5 +125,3 @@ git push origin add-new-model-your_model
 5. Click **"Create pull request"**.
 
 [Virtual Patient Engine Docs](https://virtualpatientengine.github.io/AIAgents4Pharma/ops/DevOps/)
-
-
