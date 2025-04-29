@@ -46,14 +46,14 @@ Kickstart your journey with **VPELeaderboard** by using git and following an eas
 
 2. **Set Up the Environment**
 
-Ensure that your Python environment is properly set up:
+    Ensure that your Python environment is properly set up:
 
     ```bash
     python -m venv vpe-env
     source vpe-env/bin/activate  # For macOS/Linux
     vpe-env\\Scripts\\activate     # For Windows
     ```
-    
+
 3. **Install dependencies:**
 
     ```bash
