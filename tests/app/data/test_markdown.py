@@ -8,6 +8,8 @@ from app.data.markdown_report import generate_markdown_report
 
 MODEL_PATH = "vpeleaderboard/data/models/BIOMD0000000064_url.xml"
 
+MODEL_PATH = "vpeleaderboard/data/models/BIOMD0000000064_url.xml"
+
 def test_validate_sbml_file_path_success():
     """
     Test SBML directory validation when XML files exist.

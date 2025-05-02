@@ -59,4 +59,5 @@ class BasicoModel(SysBioModel):
             "Number of Species": species_count,
             "Number of Parameters": parameter_count,
             "Description": model_description.strip()
+
         }

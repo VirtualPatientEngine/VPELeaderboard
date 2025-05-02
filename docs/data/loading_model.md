@@ -126,5 +126,3 @@ git push origin add-new-model-your_model
 
 [Virtual Patient Engine Docs](https://virtualpatientengine.github.io/AIAgents4Pharma/ops/DevOps/)
 
-
-

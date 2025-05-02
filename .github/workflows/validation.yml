@@ -6,7 +6,7 @@ on:
     branches: [ main ]
     paths:
       - 'vpeleaderboard/data/models/**'
-      - 'vpeleaderboard/data/configs/**'
+      - 'vpeleaderboard/configs/data**'
   workflow_dispatch:
 
 jobs:
@@ -31,7 +31,7 @@ jobs:
         run: |
           echo "🔍 Validating XML and YAML files on ${{ matrix.os }}..."
           models=$(ls vpeleaderboard/data/models/*.xml 2>/dev/null | xargs -n 1 basename | sed 's/.xml$//')
-          configs=$(ls vpeleaderboard/data/configs/*.yaml 2>/dev/null | xargs -n 1 basename | sed 's/.yaml$//')
+          configs=$(ls vpeleaderboard/configs/data/*.yaml 2>/dev/null | xargs -n 1 basename | sed 's/.yaml$//')
 
           missing=false
           for model in $models; do
@@ -70,7 +70,7 @@ jobs:
         run: |
           echo "🔍 Validating XML and YAML files on Windows..."
           $models = Get-ChildItem "vpeleaderboard\data\models\*.xml" | ForEach-Object { $_.BaseName }
-          $configs = Get-ChildItem "vpeleaderboard\data\configs\*.yaml" | ForEach-Object { $_.BaseName }
+          $configs = Get-ChildItem "vpeleaderboard\configs\data\*.yaml" | ForEach-Object { $_.BaseName }
 
           $missing = $false
           foreach ($model in $models) {

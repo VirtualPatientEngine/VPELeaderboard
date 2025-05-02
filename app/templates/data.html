@@ -1,5 +1,3 @@
-</body>
-</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,11 +35,11 @@
       padding: 20px;
     }
 
-    /* Ensure table is centered and does not stretch unnecessarily */
+    /* Ensure table does not exceed window width */
     .dataTables_wrapper {
-      max-width: 85%;
+      max-width: 100%;
       margin: auto;
-      overflow-x: hidden;
+      overflow-x: auto;
     }
 
     /* Ensure export buttons are fully left-aligned and search bar fully right-aligned */
@@ -49,7 +47,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: nowrap;
       margin-bottom: 10px;
       max-width: 85%;
       margin: auto;
@@ -58,156 +55,140 @@
     /* Fix Export Buttons Alignment */
     .dt-buttons {
       display: flex;
-      gap: 3px; /* Minimized gap between buttons */
-      flex-wrap: nowrap;
+      gap: 3px;
     }
 
     /* Fix Search Bar Alignment */
     .dataTables_filter {
-      margin-left: auto; /* Push search bar to the right */
-    }
-
-    .dataTables_filter {
+      margin-left: auto;
       text-align: right;
     }
-    .dataTables_filter label {
-      font-weight: bold;
-    }
 
-    .dataTables_filter input {
-      padding: 6px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-    }
-
-    /* Ensure proper table column spacing */
     #table1 th, #table1 td {
-      padding: 10px 12px;
+      padding: 12px 15px;
       text-align: center;
       vertical-align: middle;
-      white-space: nowrap;
+      word-wrap: break-word;
+      white-space: normal;
+      font-size: small;
+      width: 25%;
+      border: 1px solid #ddd; /* Add light borders between columns */
     }
 
-    /* Style table headers */
+    /* Header Styling */
     #table1 thead th {
-      background-color: #e0e0e0;
+      background-color: #f1f1f1; /* Light gray background */
       font-weight: bold;
-      border-bottom: 2px solid #bdbdbd;
+      border-bottom: 2px solid #ddd; /* Add a thin line under the header */
     }
 
     /* Abstract toggle styling */
     .abstract-toggle {
       cursor: pointer;
       text-align: center;
+      font-size: small;
     }
 
+    /* Abstract content styling */
     .abstract-content {
-      display: none;
+      text-justify: inter-word;
       background: #f9f9f9;
-      padding: 10px;
-      border-radius: 5px;
-      max-width: 500px;
+      padding: 15px;
+      border-radius: 8px;
       word-wrap: break-word;
+      white-space: normal;
+      max-width: 100%;
+      font-size: 14px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow for the abstract content */
+    }
+
+    #table1 {
+      width: 100%;
+      table-layout: fixed; 
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Add shadow to table */
+    }
+
+    /* Row Styling */
+    tr {
+      border-bottom: 1px solid #ddd; /* Light border between rows */
+    }
+
+    .child-row-content {
+      text-align: justify;
+      text-justify: inter-word;
+      word-wrap: break-word;
+      white-space: normal;
+      max-width: 100%;
+      padding: 10px;
+      font-size: small;
     }
   </style>
 </head>
 <body class="container">
   <p><i class="footer">This page was last updated on {{ current_time }} UTC</i></p>
 
-  <!-- Intro Button -->
-  <div class="note info" onclick="startIntro()">
-    <p>
-      <button type="button" class="intro-button">
-        Click here for a quick intro of the page! <i class="material-icons">help</i>
-      </button>
-    </p>
-  </div>
-  
-  <!-- Export Buttons and Search Bar at the Top -->
   <div class="export-container">
-    <div class="dt-buttons"></div> <!-- Export buttons on the left -->
-    <div class="dataTables_filter"></div> <!-- Search bar on the right -->
+    <div class="dt-buttons"></div>
+    <div class="dataTables_filter"></div>
   </div>
-         
-    <!-- System Biology Models -->
-    <div data-intro="This table displays algorithm performance metrics.">
+
+  <div>
     <h3 id="algorithm_metrics">System Biology Models</h3>
     <table id="table1" class="display wrap" style="width:100%">
-        <thead>
+      <thead>
         <tr>
-            <th>Abstract</th>
-            {% for header in headers if header != "Description" %}
-            <th>{{ header }}</th>
-            {% endfor %}
+          <th>Abstract</th>
+          <th>Model Name</th>
+          <th>Number of Species</th>
+          <th>Number of Parameters</th>
         </tr>
-        </thead>
+      </thead>
 
-        <tbody>
+      <tbody>
         {% for row in table %}
         <tr>
-            <!-- Abstract Toggle Button -->
-            <td class="abstract-toggle">
+          <td class="abstract-toggle">
             <i class="material-icons toggle-icon">visibility_off</i>
-            </td>
-            {% for key, value in row.items() if key != 'Description' %}
-            <td>{{ value }}</td>
-            {% endfor %}
+          </td>
+          <td>{{ row['Model Name'] }}</td>
+          <td>{{ row['Number of Species'] }}</td>
+          <td>{{ row['Number of Parameters'] }}</td>
         </tr>
-        <!-- Abstract Description Row -->
         <tr class="abstract-row" style="display:none;">
-            <td colspan="5">
-            <div class="abstract-content">{{ row['Description'] }}</div>
-            </td>
+          <td colspan="4">
+            <div class="abstract-content">
+              <!-- Render HTML content from Python backend here -->
+              {{ row['Description']}}
+            </div>
+          </td>
         </tr>
         {% endfor %}
-        </tbody>
+      </tbody>
     </table>
-    </div>
+  </div>
+
+  <div>
+    <h3 id="how_to_contribute">How To Add Your Models</h3>
+    <p>
+      To contribute new models to the leaderboard, please follow the instructions in the Model Submission Guide section. This guide provides the necessary steps for preparing and submitting your models, ensuring they are automatically validated and integrated into the leaderboard system via our CI/CD pipeline.
+    </p>
+  </div>
 
   <script>
-  $(document).ready(function() {
-      var table = $('#table1').DataTable({
-            data: tableData, // Ensure this is defined and has the correct structure
-            columns: [
-            { data: "Abstract" },
-            { data: "Model Name" },
-            { data: "Number of Species" },
-            { data: "Number of Parameters" },
-            ],
-          paging: true,
-          autoWidth: false,
-          scrollX: false,
-          fixedHeader: true,
-          dom: '<"export-container"Bf>rtip', // Ensures search bar is on the right
-          buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
-          columnDefs: [
-              { "className": "dt-center", "targets": "_all" },
-              { "width": "120px", "targets": 0 },
-              { "width": "160px", "targets": 1 },
-              { "width": "80px", "targets": [2, 3, 4] }
-          ]
-      });
-
-      $(".dataTables_filter").addClass("text-right");
-    });
-
-
-    document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".abstract-toggle .toggle-icon").forEach(icon => {
-        icon.addEventListener("click", function () {
-        const tr = this.closest('tr');
-        const abstractRow = tr.nextElementSibling;
-        if (abstractRow.style.display === "none" || abstractRow.style.display === "") {
-            abstractRow.style.display = "table-row";
-            this.textContent = "visibility";  // Change icon
+    $(document).ready(function() {
+      // Toggle abstract visibility on click
+      $(".abstract-toggle .toggle-icon").click(function() {
+        var tr = $(this).closest('tr');
+        var abstractRow = tr.next('.abstract-row');
+        if (abstractRow.is(":visible")) {
+          abstractRow.hide();
+          $(this).text('visibility_off');
         } else {
-            abstractRow.style.display = "none";
-            this.textContent = "visibility_off";  // Revert icon
+          abstractRow.show();
+          $(this).text('visibility');
         }
-        })
+      });
     });
-    });
-
   </script>
 </body>
 </html>

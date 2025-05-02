@@ -1,6 +1,8 @@
-defaults:
-  - _self_
-  - model: gcn
-  - data: cora
-  - trainer: default
-  - logger: mlflow
+model_directory: "../data/models"
+
+# defaults:
+#   - _self_
+#   - model: gcn
+#   - data: cora
+#   - trainer: default
+#   - logger: mlflow
