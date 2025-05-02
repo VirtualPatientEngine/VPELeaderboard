@@ -74,7 +74,7 @@ class SBMLDataModule(LightningDataModule):
         script_dir = "\\".join(script_dir.split("\\")[:-1])
         script_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
         with hydra.initialize(version_base=None,
-                              config_path="../utils"):
+                              config_path="../../configs"):
             cfg = hydra.compose(config_name="config")
 
         model_directory = os.path.join(script_dir, cfg.model_directory)
@@ -87,7 +87,7 @@ class SBMLDataModule(LightningDataModule):
                 f"Expected at: {sbml_path}"
             )
         self.sbml_file_path = sbml_path
-        yaml_file = os.path.join(script_dir, "configs", f"{self.fine_name}.yaml")
+        yaml_file = os.path.join(script_dir, "../configs/data", f"{self.fine_name}.yaml")
         if not os.path.exists(yaml_file):
             raise FileNotFoundError(f"YAML file not found: {yaml_file}")
 
